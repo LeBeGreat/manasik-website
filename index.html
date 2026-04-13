@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مناسك الزوار | Manasik Visitors - خدمات العمرة</title>
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --gold: #C8A045;
+            --gold-light: #DABB6A;
+            --gold-dark: #A88535;
+            --gold-glow: rgba(200,160,69,0.25);
+            --black: #0D0D0D;
+            --dark: #151515;
+            --dark-card: #1A1A1A;
+            --gray-dark: #2A2A2A;
+            --gray: #888;
+            --gray-light: #BBB;
+            --cream: #FBF8F1;
+            --cream-dark: #F5F0E5;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Tajawal', 'Cairo', sans-serif;
+            color: var(--black);
+            background: var(--white);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ===== SECTION TITLES ===== */
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-header .label {
+            display: inline-block; font-size: 0.85rem; font-weight: 700;
+            letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 12px;
+        }
+        .section-header h2 {
+            font-size: 2.6rem; font-weight: 900; color: var(--black);
+            margin-bottom: 16px; font-family: 'Cairo', sans-serif;
+        }
+        .section-header .line {
+            width: 60px; height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            margin: 0 auto 18px; border-radius: 3px;
+        }
+        .section-header p { color: var(--gray); font-size: 1.1rem; max-width: 550px; margin: 0 auto; }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 15px 38px; border-radius: 50px;
+            font-family: 'Tajawal', sans-serif; font-weight: 700; font-size: 1rem;
+            text-decoration: none; transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+            cursor: pointer; border: none; position: relative; overflow: hidden;
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--white); box-shadow: 0 6px 30px var(--gold-glow);
+        }
+        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(200,160,69,0.45); }
+        .btn-outline-white {
+            background: transparent; color: var(--white);
+            border: 2px solid rgba(255,255,255,0.4); backdrop-filter: blur(5px);
+        }
+        .btn-outline-white:hover { background: var(--white); color: var(--black); border-color: var(--white); }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed; top: 0; right: 0; left: 0;
+            z-index: 1000; padding: 12px 0; transition: all 0.4s ease;
+        }
+        .header.scrolled {
+            background: rgba(13,13,13,0.95); backdrop-filter: blur(20px);
+            padding: 6px 0; box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+        }
+        .header .container { display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo img { height: 65px; width: auto; transition: all 0.3s; }
+        .header.scrolled .logo img { height: 50px; }
+
+        .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: rgba(255,255,255,0.75);
+            font-weight: 600; font-size: 0.92rem; padding: 10px 20px;
+            border-radius: 30px; transition: all 0.3s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); background: rgba(200,160,69,0.1); }
+        .header-cta { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--white) !important; padding: 10px 24px !important; }
+        .header-cta:hover { background: var(--gold-light) !important; }
+
+        .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001; }
+        .hamburger span { width: 30px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 7px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -7px); }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            background: var(--black); position: relative; overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+        }
+        .hero-bg::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(13,13,13,0.6) 0%, rgba(13,13,13,0.4) 50%, rgba(13,13,13,0.8) 100%);
+            z-index: 1;
+        }
+        .hero-slide {
+            position: absolute; inset: 0;
+            background-size: cover; background-position: center;
+            opacity: 0; transition: opacity 1.5s ease-in-out;
+        }
+        .hero-slide.active { opacity: 1; }
+        .hero-pattern {
+            position: absolute; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8A045' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hero-glow {
+            position: absolute; width: 500px; height: 500px;
+            background: radial-gradient(circle, var(--gold-glow), transparent 70%);
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            animation: glow-pulse 4s ease-in-out infinite;
+        }
+        @keyframes glow-pulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+        }
+        .hero .container { position: relative; z-index: 2; text-align: center; padding-top: 100px; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(200,160,69,0.12); border: 1px solid rgba(200,160,69,0.25);
+            padding: 8px 22px; border-radius: 50px; color: var(--gold);
+            font-size: 0.85rem; font-weight: 600; margin-bottom: 30px; backdrop-filter: blur(10px);
+        }
+        .hero-badge i { font-size: 0.75rem; }
+        .hero h1 { font-size: 3.5rem; font-weight: 900; color: var(--white); margin-bottom: 24px; line-height: 1.3; font-family: 'Cairo', sans-serif; }
+        .hero h1 .gold { color: var(--gold); }
+        .hero h1 .thin { font-weight: 300; opacity: 0.7; }
+        .hero-desc { font-size: 1.2rem; color: rgba(255,255,255,0.55); max-width: 620px; margin: 0 auto 45px; line-height: 2; }
+        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+        .hero-stats { display: flex; justify-content: center; gap: 2px; margin-top: 80px; }
+        .hero-stat {
+            text-align: center; padding: 30px 50px;
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+            backdrop-filter: blur(10px);
+        }
+        .hero-stat:first-child { border-radius: 0 16px 16px 0; }
+        .hero-stat:last-child { border-radius: 16px 0 0 16px; }
+        .hero-stat .num { font-size: 2.8rem; font-weight: 900; color: var(--gold); font-family: 'Cairo', sans-serif; line-height: 1.2; }
+        .hero-stat .txt { color: rgba(255,255,255,0.45); font-size: 0.9rem; margin-top: 4px; }
+
+        /* ===== MARQUEE ===== */
+        .marquee-section { background: var(--gold); padding: 14px 0; overflow: hidden; }
+        .marquee-track { display: flex; gap: 60px; animation: marquee 20s linear infinite; width: max-content; }
+        .marquee-item { display: flex; align-items: center; gap: 12px; color: var(--white); font-weight: 700; font-size: 0.95rem; white-space: nowrap; }
+        .marquee-item i { opacity: 0.7; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* ===== ABOUT ===== */
+        .about { padding: 120px 0; background: var(--white); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .about-image-wrap { position: relative; }
+        .about-image-wrap .main-img { width: 100%; height: 500px; object-fit: cover; border-radius: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
+        .about-image-wrap .float-card {
+            position: absolute; bottom: -30px; left: -30px; background: var(--white);
+            padding: 24px 30px; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            display: flex; align-items: center; gap: 15px;
+        }
+        .float-card-icon {
+            width: 55px; height: 55px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1.3rem;
+        }
+        .float-card-text .big { font-size: 1.6rem; font-weight: 900; color: var(--black); }
+        .float-card-text .small { font-size: 0.85rem; color: var(--gray); }
+
+        .about-content .label { font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; display: block; }
+        .about-content h2 { font-size: 2.2rem; font-weight: 900; color: var(--black); margin-bottom: 24px; line-height: 1.4; font-family: 'Cairo', sans-serif; }
+        .about-content p { color: var(--gray); font-size: 1.05rem; margin-bottom: 16px; line-height: 2; }
+        .about-checks { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 30px 0 35px; }
+        .about-check { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.95rem; }
+        .about-check i {
+            width: 24px; height: 24px; border-radius: 50%;
+            background: rgba(200,160,69,0.12); color: var(--gold);
+            display: flex; align-items: center; justify-content: center; font-size: 0.65rem;
+        }
+
+        /* ===== SERVICES ===== */
+        .services { padding: 120px 0; background: var(--cream); }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+        .service-card {
+            background: var(--white); border-radius: 20px; padding: 45px 32px;
+            text-align: center; transition: all 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+            border: 1px solid rgba(0,0,0,0.04); position: relative; overflow: hidden;
+        }
+        .service-card::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            opacity: 0; transition: opacity 0.5s; z-index: 0;
+        }
+        .service-card:hover::after { opacity: 1; }
+        .service-card > * { position: relative; z-index: 1; }
+        .service-card:hover { transform: translateY(-12px); box-shadow: 0 20px 60px var(--gold-glow); }
+        .service-card:hover .service-icon { background: rgba(255,255,255,0.2); }
+        .service-card:hover .service-icon i { color: var(--white); }
+        .service-card:hover h3 { color: var(--white); }
+        .service-card:hover p { color: rgba(255,255,255,0.85); }
+        .service-icon {
+            width: 80px; height: 80px; border-radius: 20px; background: var(--cream);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 24px; transition: all 0.5s;
+        }
+        .service-icon i { font-size: 1.8rem; color: var(--gold); transition: all 0.5s; }
+        .service-card h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 12px; color: var(--black); transition: all 0.5s; }
+        .service-card p { color: var(--gray); font-size: 0.95rem; line-height: 1.9; transition: all 0.5s; }
+
+        /* ===== GALLERY ===== */
+        .gallery { padding: 120px 0; background: var(--black); }
+        .gallery .section-header h2 { color: var(--white); }
+        .gallery .section-header p { color: rgba(255,255,255,0.5); }
+
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 250px; gap: 16px;
+        }
+        .gallery-item { position: relative; border-radius: 16px; overflow: hidden; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-item .overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(13,13,13,0.8), transparent 60%);
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 24px; opacity: 0; transition: opacity 0.4s;
+        }
+        .gallery-item:hover .overlay { opacity: 1; }
+        .overlay-text { color: var(--white); font-weight: 700; font-size: 1rem; }
+        .overlay-sub { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-top: 4px; }
+        .gallery-item .zoom-icon {
+            position: absolute; top: 16px; left: 16px;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(200,160,69,0.8); color: white;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: all 0.3s; font-size: 0.9rem;
+        }
+        .gallery-item:hover .zoom-icon { opacity: 1; }
+
+        .gallery-item.tall { grid-row: span 2; }
+        .gallery-item.wide { grid-column: span 2; }
+
+        .gallery-more {
+            text-align: center; margin-top: 50px;
+        }
+        .gallery-more .btn {
+            border: 2px solid rgba(255,255,255,0.2); color: var(--white);
+            background: transparent;
+        }
+        .gallery-more .btn:hover {
+            background: var(--gold); border-color: var(--gold);
+        }
+
+        /* ===== WHY US ===== */
+        .why-us { padding: 120px 0; background: var(--cream); }
+        .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+        .why-card {
+            padding: 45px 30px; border-radius: 20px; background: var(--white);
+            border: 1px solid rgba(0,0,0,0.04); transition: all 0.4s; position: relative;
+        }
+        .why-card:hover { transform: translateY(-8px); box-shadow: 0 15px 50px rgba(0,0,0,0.08); }
+        .why-num { font-size: 4rem; font-weight: 900; color: rgba(200,160,69,0.1); font-family: 'Cairo', sans-serif; line-height: 1; margin-bottom: 10px; }
+        .why-card h3 { font-size: 1.2rem; font-weight: 800; color: var(--black); margin-bottom: 12px; }
+        .why-card p { color: var(--gray); font-size: 0.95rem; line-height: 1.9; }
+
+        /* ===== CTA ===== */
+        .cta {
+            padding: 100px 0; background: linear-gradient(135deg, var(--black) 0%, #1f1a0f 100%);
+            position: relative; overflow: hidden; text-align: center;
+        }
+        .cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(200,160,69,0.1), transparent 70%); }
+        .cta .container { position: relative; z-index: 2; }
+        .cta h2 { font-size: 2.4rem; font-weight: 900; color: var(--white); margin-bottom: 16px; font-family: 'Cairo', sans-serif; }
+        .cta p { color: rgba(255,255,255,0.5); font-size: 1.1rem; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+        /* ===== CONTACT ===== */
+        .contact { padding: 120px 0; background: var(--white); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; }
+        .contact-right { background: var(--cream); border-radius: 24px; padding: 50px; }
+        .contact-right h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 30px; }
+        .form-row { display: flex; gap: 16px; }
+        .form-group { margin-bottom: 18px; flex: 1; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 16px 20px; border: 2px solid #E8E4DC;
+            border-radius: 14px; font-family: 'Tajawal', sans-serif;
+            font-size: 0.95rem; transition: all 0.3s; background: var(--white);
+        }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 4px var(--gold-glow); }
+        .form-group textarea { height: 130px; resize: vertical; }
+
+        .contact-info { display: flex; flex-direction: column; gap: 24px; }
+        .contact-card {
+            display: flex; align-items: center; gap: 20px; padding: 28px;
+            border-radius: 16px; background: var(--cream); transition: all 0.3s;
+        }
+        .contact-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.06); transform: translateX(5px); }
+        .contact-card-icon {
+            width: 60px; height: 60px; border-radius: 16px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .contact-card-icon i { color: var(--white); font-size: 1.3rem; }
+        .contact-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--black); margin-bottom: 4px; }
+        .contact-card p, .contact-card a { color: var(--gray); font-size: 1rem; text-decoration: none; direction: ltr; display: inline-block; }
+        .contact-card a:hover { color: var(--gold); }
+
+        /* ===== FOOTER ===== */
+        .footer { background: var(--black); color: rgba(255,255,255,0.6); padding: 70px 0 0; }
+        .footer-grid {
+            display: grid; grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .footer-about img { height: 60px; margin-bottom: 18px; }
+        .footer-about p { font-size: 0.95rem; line-height: 2; color: rgba(255,255,255,0.4); }
+        .footer h4 { color: var(--white); font-size: 1.1rem; font-weight: 700; margin-bottom: 24px; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; transition: all 0.3s; font-size: 0.95rem; }
+        .footer-links a:hover { color: var(--gold); padding-right: 6px; }
+        .footer-contact-item { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: 0.95rem; }
+        .footer-contact-item i { color: var(--gold); width: 18px; }
+        .footer-contact-item a { color: rgba(255,255,255,0.4); text-decoration: none; direction: ltr; display: inline-block; }
+        .footer-contact-item a:hover { color: var(--gold); }
+        .footer-bottom { text-align: center; padding: 24px 0; font-size: 0.82rem; color: rgba(255,255,255,0.25); }
+
+        /* ===== WHATSAPP ===== */
+        .wa-float {
+            position: fixed; bottom: 28px; left: 28px; z-index: 999;
+            width: 62px; height: 62px; border-radius: 50%; background: #25D366;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 6px 25px rgba(37,211,102,0.4); text-decoration: none; transition: all 0.3s;
+        }
+        .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 35px rgba(37,211,102,0.5); }
+        .wa-float i { color: white; font-size: 1.8rem; }
+        .wa-float::after {
+            content: ''; position: absolute; inset: -4px; border-radius: 50%;
+            border: 2px solid rgba(37,211,102,0.3); animation: wa-ring 2s infinite;
+        }
+        @keyframes wa-ring {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.15); opacity: 0; }
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(15px); z-index: 2000;
+            display: none; align-items: center; justify-content: center;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 85vh; object-fit: contain; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+        .lightbox-close {
+            position: absolute; top: 30px; left: 30px;
+            width: 50px; height: 50px; border-radius: 50%;
+            background: rgba(255,255,255,0.1); border: none; color: white;
+            font-size: 1.5rem; cursor: pointer; display: flex;
+            align-items: center; justify-content: center; transition: all 0.3s;
+        }
+        .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+        .lightbox-nav {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            width: 50px; height: 50px; border-radius: 50%;
+            background: rgba(255,255,255,0.1); border: none; color: white;
+            font-size: 1.2rem; cursor: pointer; display: flex;
+            align-items: center; justify-content: center; transition: all 0.3s;
+        }
+        .lightbox-nav:hover { background: var(--gold); }
+        .lightbox-prev { right: 30px; }
+        .lightbox-next { left: 30px; }
+        .lightbox-counter {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            color: rgba(255,255,255,0.5); font-size: 0.9rem;
+        }
+
+        /* ===== LANGUAGE SWITCHER ===== */
+        .lang-switcher { position: relative; }
+        .lang-btn {
+            display: flex; align-items: center; gap: 8px;
+            background: transparent; border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.75); padding: 8px 16px; border-radius: 30px;
+            cursor: pointer; font-family: 'Tajawal', sans-serif; font-size: 0.85rem;
+            font-weight: 600; transition: all 0.3s;
+        }
+        .lang-btn:hover { color: var(--gold); border-color: rgba(200,160,69,0.4); }
+        .lang-btn i { font-size: 0.9rem; }
+        .lang-btn .arrow { font-size: 0.65rem; transition: transform 0.3s; }
+        .lang-switcher.open .lang-btn .arrow { transform: rotate(180deg); }
+        .lang-dropdown {
+            position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%);
+            background: var(--dark); border: 1px solid rgba(200,160,69,0.15);
+            border-radius: 16px; padding: 8px; min-width: 180px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4); opacity: 0; visibility: hidden;
+            transition: all 0.3s; z-index: 9999; backdrop-filter: blur(20px);
+        }
+        .lang-switcher.open .lang-dropdown { opacity: 1; visibility: visible; }
+        .lang-option {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 14px; border-radius: 10px; cursor: pointer;
+            color: rgba(255,255,255,0.7); font-size: 0.88rem; font-weight: 500;
+            transition: all 0.2s; font-family: 'Tajawal', sans-serif;
+        }
+        .lang-option:hover { background: rgba(200,160,69,0.1); color: var(--gold); }
+        .lang-option.active { color: var(--gold); background: rgba(200,160,69,0.08); }
+        .lang-option .flag { font-size: 1.2rem; width: 24px; text-align: center; }
+        .lang-option .lang-name { flex: 1; }
+
+        /* Hide Google Translate bar */
+        .goog-te-banner-frame, .skiptranslate { display: none !important; }
+        body { top: 0 !important; }
+
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed; top: 0; right: -100%; width: 300px; height: 100vh;
+                background: var(--black); flex-direction: column; padding: 100px 30px 30px;
+                box-shadow: 0 0 50px rgba(0,0,0,0.5); transition: all 0.4s; gap: 5px;
+            }
+            .nav-links.active { right: 0; }
+            .hamburger { display: flex; }
+            .lang-dropdown { left: auto; right: 0; transform: none; }
+            .lang-switcher { position: absolute; top: 18px; left: 80px; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero-stats { flex-direction: column; gap: 10px; }
+            .hero-stat { border-radius: 12px !important; }
+            .about-grid, .contact-grid { grid-template-columns: 1fr; }
+            .services-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
+            .gallery-item.tall { grid-row: span 1; }
+            .gallery-item.wide { grid-column: span 1; }
+            .form-row { flex-direction: column; gap: 0; }
+        }
+        @media (max-width: 576px) {
+            .services-grid, .why-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+            .hero h1 { font-size: 1.9rem; }
+            .section-header h2 { font-size: 2rem; }
+            .about-image-wrap .float-card { position: relative; bottom: auto; left: auto; margin-top: 16px; }
+            .contact-right { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#" class="logo"><img src="images/logo.png" alt="مناسك الزوار"></a>
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#hero" class="active">الرئيسية</a></li>
+                    <li><a href="#about">عن الشركة</a></li>
+                    <li><a href="#services">خدماتنا</a></li>
+                    <li><a href="#gallery">المعرض</a></li>
+                    <li><a href="#why-us">لماذا نحن</a></li>
+                    <li><a href="#contact" class="header-cta">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <div class="lang-switcher" id="langSwitcher">
+                <button class="lang-btn" onclick="toggleLang()">
+                    <i class="fas fa-globe"></i>
+                    <span id="currentLang">العربية</span>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </button>
+                <div class="lang-dropdown">
+                    <div class="lang-option active" data-lang="ar"><span class="flag">🇸🇦</span><span class="lang-name">العربية</span></div>
+                    <div class="lang-option" data-lang="tr"><span class="flag">🇹🇷</span><span class="lang-name">Türkçe</span></div>
+                    <div class="lang-option" data-lang="en"><span class="flag">🇬🇧</span><span class="lang-name">English</span></div>
+                    <div class="lang-option" data-lang="ur"><span class="flag">🇵🇰</span><span class="lang-name">اردو</span></div>
+                    <div class="lang-option" data-lang="uz"><span class="flag">🇺🇿</span><span class="lang-name">O'zbek</span></div>
+                    <div class="lang-option" data-lang="id"><span class="flag">🇮🇩</span><span class="lang-name">Indonesia</span></div>
+                    <div class="lang-option" data-lang="fil"><span class="flag">🇵🇭</span><span class="lang-name">Filipino</span></div>
+                    <div class="lang-option" data-lang="fr"><span class="flag">🇫🇷</span><span class="lang-name">Français</span></div>
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="hero-slide active" style="background-image:url('images/background1.jpg')"></div>
+            <div class="hero-slide" style="background-image:url('images/background2.jpg')"></div>
+            <div class="hero-slide" style="background-image:url('images/background3.jpg')"></div>
+            <div class="hero-slide" style="background-image:url('images/background4.jpg')"></div>
+            <div class="hero-slide" style="background-image:url('images/background6.jpg')"></div>
+        </div>
+        <div class="hero-pattern"></div>
+        <div class="hero-glow"></div>
+        <div class="container">
+            <div class="hero-badge"><i class="fas fa-star"></i> شركة سعودية معتمدة لخدمات العمرة</div>
+            <h1><span class="thin">شريككم الموثوق في</span><br>رحلة <span class="gold">العمرة</span></h1>
+            <p class="hero-desc">مناسك الزوار تقدم لضيوف الرحمن خدمات عمرة متكاملة بأعلى معايير الجودة والاحترافية، من لحظة وصولكم حتى مغادرتكم</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/966504993272" target="_blank" class="btn btn-gold"><i class="fab fa-whatsapp"></i> احجز رحلتك الآن</a>
+                <a href="#about" class="btn btn-outline-white">تعرّف علينا</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat"><div class="num">+500</div><div class="txt">معتمر سنوياً</div></div>
+                <div class="hero-stat"><div class="num">+6</div><div class="txt">سنوات خبرة</div></div>
+                <div class="hero-stat"><div class="num">24/7</div><div class="txt">دعم متواصل</div></div>
+                <div class="hero-stat"><div class="num">100%</div><div class="txt">رضا العملاء</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <span class="marquee-item"><i class="fas fa-kaaba"></i> خدمات عمرة متكاملة</span>
+            <span class="marquee-item"><i class="fas fa-hotel"></i> فنادق فاخرة</span>
+            <span class="marquee-item"><i class="fas fa-bus"></i> نقل مريح</span>
+            <span class="marquee-item"><i class="fas fa-user-tie"></i> مرشدون محترفون</span>
+            <span class="marquee-item"><i class="fas fa-headset"></i> دعم على مدار الساعة</span>
+            <span class="marquee-item"><i class="fas fa-hand-holding-heart"></i> ضيافة مميزة</span>
+            <span class="marquee-item"><i class="fas fa-kaaba"></i> خدمات عمرة متكاملة</span>
+            <span class="marquee-item"><i class="fas fa-hotel"></i> فنادق فاخرة</span>
+            <span class="marquee-item"><i class="fas fa-bus"></i> نقل مريح</span>
+            <span class="marquee-item"><i class="fas fa-user-tie"></i> مرشدون محترفون</span>
+            <span class="marquee-item"><i class="fas fa-headset"></i> دعم على مدار الساعة</span>
+            <span class="marquee-item"><i class="fas fa-hand-holding-heart"></i> ضيافة مميزة</span>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image-wrap reveal">
+                    <img class="main-img" src="images/b16.jpg" alt="مناسك الزوار">
+                    <div class="float-card">
+                        <div class="float-card-icon"><i class="fas fa-award"></i></div>
+                        <div class="float-card-text">
+                            <div class="big">+6 سنوات</div>
+                            <div class="small">خبرة في خدمة المعتمرين</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-content reveal">
+                    <span class="label">من نحن</span>
+                    <h2>مناسك الزوار لخدمات المعتمرين</h2>
+                    <p>شركة سعودية رائدة في مجال تنظيم رحلات العمرة، نضع خبرتنا الطويلة في خدمة ضيوف الرحمن لنوفر لهم أفضل الخدمات المتكاملة التي تليق بمقام هذه الشعيرة العظيمة.</p>
+                    <p>نحرص على أن تكون رحلة العمرة تجربة روحانية مريحة بكل تفاصيلها، بدءاً من الاستقبال في المطار وحتى لحظة المغادرة.</p>
+                    <div class="about-checks">
+                        <div class="about-check"><i class="fas fa-check"></i><span>فريق متخصص ومحترف</span></div>
+                        <div class="about-check"><i class="fas fa-check"></i><span>خدمات شاملة ومتكاملة</span></div>
+                        <div class="about-check"><i class="fas fa-check"></i><span>أسعار تنافسية ومناسبة</span></div>
+                        <div class="about-check"><i class="fas fa-check"></i><span>دعم على مدار الساعة</span></div>
+                    </div>
+                    <a href="#services" class="btn btn-gold">اكتشف خدماتنا</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label">خدماتنا</span>
+                <h2>خدمات متكاملة لرحلة مميزة</h2>
+                <div class="line"></div>
+                <p>نقدم مجموعة شاملة من الخدمات لنضمن لكم تجربة عمرة لا تُنسى</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-route"></i></div>
+                    <h3>تنظيم رحلات العمرة</h3>
+                    <p>نتولى تنظيم رحلتكم بالكامل من الألف إلى الياء بأعلى معايير الاحترافية</p>
+                </div>
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-icon"><i class="fas fa-hotel"></i></div>
+                    <h3>الإقامة الفندقية</h3>
+                    <p>حجوزات في أرقى الفنادق القريبة من الحرم بمختلف الفئات والدرجات</p>
+                </div>
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-icon"><i class="fas fa-bus-alt"></i></div>
+                    <h3>النقل والمواصلات</h3>
+                    <p>أسطول حديث ومريح يضمن تنقلاتكم بسلاسة بين المشاعر والفنادق</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fas fa-user-tie"></i></div>
+                    <h3>المرشدون المتخصصون</h3>
+                    <p>مرشدون ذوو خبرة يرافقونكم ويقدمون لكم الإرشاد والتوجيه الكامل</p>
+                </div>
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="service-icon"><i class="fas fa-headset"></i></div>
+                    <h3>الدعم واللوجستيات</h3>
+                    <p>فريق دعم متاح ٢٤ ساعة لتلبية جميع احتياجاتكم وحل أي استفسار</p>
+                </div>
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h3>الضيافة والاستقبال</h3>
+                    <p>استقبال مميز في المطار وضيافة راقية طوال فترة إقامتكم</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label" style="color:var(--gold);">معرض الصور</span>
+                <h2>لحظات من رحلاتنا</h2>
+                <div class="line"></div>
+                <p>نفخر بتقديم أرقى الخدمات لضيوف الرحمن - اطّلعوا على أبرز لحظاتنا</p>
+            </div>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-item tall" onclick="openLightbox(this)">
+                    <img src="images/b16.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item wide" onclick="openLightbox(this)">
+                    <img src="images/b17.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/b18.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/b19.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item wide" onclick="openLightbox(this)">
+                    <img src="images/b111.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/b112.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item tall" onclick="openLightbox(this)">
+                    <img src="images/b115.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/b116.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/b117.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item wide" onclick="openLightbox(this)">
+                    <img src="images/b118.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/b120.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/b125.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item tall" onclick="openLightbox(this)">
+                    <img src="images/b126.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/b127.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item wide" onclick="openLightbox(this)">
+                    <img src="images/b128.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/b129.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/b130.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/b131.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item wide" onclick="openLightbox(this)">
+                    <img src="images/b133.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/b135.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item tall" onclick="openLightbox(this)">
+                    <img src="images/b136.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/b137.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/b138.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="images/b139.jpg" alt="من رحلاتنا">
+                    <div class="overlay"><span class="overlay-text">مناسك الزوار</span></div>
+                    <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+            </div>
+
+            <div class="gallery-more reveal">
+                <a href="#contact" class="btn">تواصل معنا لمشاهدة المزيد</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY US -->
+    <section class="why-us" id="why-us">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label">مميزاتنا</span>
+                <h2>لماذا مناسك الزوار؟</h2>
+                <div class="line"></div>
+                <p>نتميّز بعدة مزايا تجعلنا الخيار الأمثل لرحلة عمرتكم</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card reveal"><div class="why-num">01</div><h3>خبرة عميقة</h3><p>سنوات طويلة من الخبرة في تنظيم رحلات العمرة مكّنتنا من فهم احتياجات المعتمرين بدقة عالية</p></div>
+                <div class="why-card reveal reveal-delay-1"><div class="why-num">02</div><h3>فريق متخصص</h3><p>كوادر مؤهلة ومدربة على أعلى مستوى لتقديم خدمة استثنائية تليق بضيوف الرحمن</p></div>
+                <div class="why-card reveal reveal-delay-2"><div class="why-num">03</div><h3>معايير جودة شاملة</h3><p>نلتزم بأعلى معايير الجودة العالمية في جميع خدماتنا لضمان رضاكم التام</p></div>
+                <div class="why-card reveal"><div class="why-num">04</div><h3>دعم متواصل</h3><p>فريق دعم جاهز على مدار الساعة طوال أيام الأسبوع لمساعدتكم في أي وقت</p></div>
+                <div class="why-card reveal reveal-delay-1"><div class="why-num">05</div><h3>ثقة وشفافية</h3><p>نبني علاقتنا مع عملائنا على أساس الثقة المتبادلة والشفافية الكاملة</p></div>
+                <div class="why-card reveal reveal-delay-2"><div class="why-num">06</div><h3>أسعار منافسة</h3><p>نقدم أفضل الأسعار مع الحفاظ على أعلى مستويات الجودة والخدمة المتميزة</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container reveal">
+            <h2>جاهز لرحلة عمرة لا تُنسى؟</h2>
+            <p>تواصل معنا الآن ودعنا نتولى كل التفاصيل لتستمتع بتجربة روحانية مميزة</p>
+            <a href="https://wa.me/966504993272" target="_blank" class="btn btn-gold"><i class="fab fa-whatsapp"></i> احجز رحلتك الآن</a>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="label">تواصل معنا</span>
+                <h2>نسعد بخدمتكم</h2>
+                <div class="line"></div>
+                <p>نسعد بتواصلكم معنا والرد على جميع استفساراتكم</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <div class="contact-card">
+                        <div class="contact-card-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div><h4>اتصل بنا</h4><a href="tel:+966504993272">+966 50 499 3272</a></div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div><h4>واتساب</h4><a href="https://wa.me/966504993272" target="_blank">+966 50 499 3272</a></div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div><h4>موقعنا</h4><p>مكة المكرمة، المملكة العربية السعودية</p></div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+                        <div><h4>البريد الإلكتروني</h4><a href="mailto:info@manasik.sa">info@manasik.sa</a></div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon"><i class="fas fa-clock"></i></div>
+                        <div><h4>ساعات العمل</h4><p>متاحون على مدار الساعة</p></div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon"><i class="fas fa-id-card"></i></div>
+                        <div><h4>رقم الترخيص</h4><p>2172</p></div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon"><i class="fas fa-file-alt"></i></div>
+                        <div><h4>السجل التجاري</h4><p>7017596763</p></div>
+                    </div>
+                </div>
+                <div class="contact-right reveal">
+                    <h3>أرسل لنا رسالة</h3>
+                    <form id="contactForm" onsubmit="sendWhatsApp(event)">
+                        <div class="form-row">
+                            <div class="form-group"><input type="text" id="fname" placeholder="الاسم الكامل" required></div>
+                            <div class="form-group"><input type="tel" id="fphone" placeholder="رقم الجوال" required></div>
+                        </div>
+                        <div class="form-group"><input type="text" id="fsubject" placeholder="الموضوع"></div>
+                        <div class="form-group"><textarea id="fmessage" placeholder="رسالتك..."></textarea></div>
+                        <button type="submit" class="btn btn-gold" style="width:100%; justify-content:center;"><i class="fab fa-whatsapp"></i> إرسال عبر واتساب</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="images/logo.png" alt="مناسك الزوار">
+                    <p>مناسك الزوار شركة سعودية متخصصة في تنظيم رحلات العمرة باحترافية عالية. نسعى لتوفير أفضل تجربة عبادة مريحة وشاملة لضيوف الرحمن.</p>
+                </div>
+                <div>
+                    <h4>روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="#hero">الرئيسية</a></li>
+                        <li><a href="#about">عن الشركة</a></li>
+                        <li><a href="#services">خدماتنا</a></li>
+                        <li><a href="#gallery">المعرض</a></li>
+                        <li><a href="#why-us">لماذا نحن</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>تواصل معنا</h4>
+                    <div class="footer-contact-item"><i class="fas fa-phone-alt"></i><a href="tel:+966504993272">+966 50 499 3272</a></div>
+                    <div class="footer-contact-item"><i class="fab fa-whatsapp"></i><a href="https://wa.me/966504993272" target="_blank">واتساب</a></div>
+                    <div class="footer-contact-item"><i class="fas fa-envelope"></i><a href="mailto:info@manasik.sa">info@manasik.sa</a></div>
+                    <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i><span>مكة المكرمة</span></div>
+                    <div class="footer-contact-item"><i class="fas fa-id-card"></i><span>ترخيص رقم: 2172</span></div>
+                    <div class="footer-contact-item"><i class="fas fa-file-alt"></i><span>سجل تجاري: 7017596763</span></div>
+                </div>
+            </div>
+            <div class="footer-bottom">&copy; 2026 مناسك الزوار - Manasik Visitors. جميع الحقوق محفوظة | ترخيص رقم 2172 | سجل تجاري 7017596763</div>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/966504993272" target="_blank" class="wa-float" title="تواصل واتساب"><i class="fab fa-whatsapp"></i></a>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+        <button class="lightbox-nav lightbox-prev" onclick="navLightbox(1)"><i class="fas fa-chevron-right"></i></button>
+        <img id="lightboxImg" src="" alt="">
+        <button class="lightbox-nav lightbox-next" onclick="navLightbox(-1)"><i class="fas fa-chevron-left"></i></button>
+        <div class="lightbox-counter" id="lightboxCounter"></div>
+    </div>
+
+    <script>
+        // Menu
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+            document.getElementById('hamburger').classList.toggle('active');
+        }
+        document.querySelectorAll('.nav-links a').forEach(a => {
+            a.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+                document.getElementById('hamburger').classList.remove('active');
+            });
+        });
+
+        // Header scroll
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').classList.toggle('scrolled', scrollY > 60);
+            let cur = '';
+            document.querySelectorAll('section[id]').forEach(s => {
+                if (scrollY >= s.offsetTop - 120) cur = s.id;
+            });
+            document.querySelectorAll('.nav-links a').forEach(a => {
+                a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+            });
+        });
+
+        // Reveal
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        // Hero slideshow
+        (function() {
+            const slides = document.querySelectorAll('.hero-slide');
+            let current = 0;
+            setInterval(() => {
+                slides[current].classList.remove('active');
+                current = (current + 1) % slides.length;
+                slides[current].classList.add('active');
+            }, 5000);
+        })();
+
+        // Lightbox
+        let currentLightboxIndex = 0;
+        let galleryImages = [];
+
+        function openLightbox(el) {
+            galleryImages = [...document.querySelectorAll('.gallery-item img')];
+            const src = el.querySelector('img').src;
+            currentLightboxIndex = galleryImages.findIndex(img => img.src === src);
+            showLightboxImage();
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function showLightboxImage() {
+            document.getElementById('lightboxImg').src = galleryImages[currentLightboxIndex].src;
+            document.getElementById('lightboxCounter').textContent =
+                (currentLightboxIndex + 1) + ' / ' + galleryImages.length;
+        }
+
+        function navLightbox(dir) {
+            event.stopPropagation();
+            currentLightboxIndex = (currentLightboxIndex + dir + galleryImages.length) % galleryImages.length;
+            showLightboxImage();
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('lightbox')) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') navLightbox(-1);
+            if (e.key === 'ArrowLeft') navLightbox(1);
+        });
+
+        // WhatsApp form
+        function sendWhatsApp(e) {
+            e.preventDefault();
+            const n = document.getElementById('fname').value;
+            const p = document.getElementById('fphone').value;
+            const s = document.getElementById('fsubject').value;
+            const m = document.getElementById('fmessage').value;
+            const txt = `مرحباً، أنا ${n}\nرقم الجوال: ${p}\nالموضوع: ${s}\n${m}`;
+            window.open(`https://wa.me/966504993272?text=${encodeURIComponent(txt)}`, '_blank');
+        }
+        // Language Switcher
+        function toggleLang() {
+            document.getElementById('langSwitcher').classList.toggle('open');
+        }
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.lang-switcher')) {
+                document.getElementById('langSwitcher').classList.remove('open');
+            }
+        });
+
+        // Google Translate
+        function googleTranslateInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'ar',
+                includedLanguages: 'ar,tr,en,ur,uz,id,fil,fr',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        // Hidden container for Google Translate
+        (function() {
+            const div = document.createElement('div');
+            div.id = 'google_translate_element';
+            div.style.display = 'none';
+            document.body.appendChild(div);
+        })();
+
+        // Handle language selection
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.addEventListener('click', () => {
+                const lang = opt.dataset.lang;
+                const name = opt.querySelector('.lang-name').textContent;
+
+                // Update active state
+                document.querySelectorAll('.lang-option').forEach(o => o.classList.remove('active'));
+                opt.classList.add('active');
+                document.getElementById('currentLang').textContent = name;
+                document.getElementById('langSwitcher').classList.remove('open');
+
+                // Save preference
+                localStorage.setItem('selectedLang', lang);
+
+                // Trigger Google Translate
+                const select = document.querySelector('.goog-te-combo');
+                if (select) {
+                    select.value = lang === 'fil' ? 'tl' : lang;
+                    select.dispatchEvent(new Event('change'));
+                }
+
+                // Handle RTL/LTR
+                if (lang === 'ar' || lang === 'ur') {
+                    document.documentElement.setAttribute('dir', 'rtl');
+                    document.documentElement.setAttribute('lang', lang);
+                } else {
+                    document.documentElement.setAttribute('dir', 'ltr');
+                    document.documentElement.setAttribute('lang', lang);
+                }
+            });
+        });
+
+        // Restore saved language on load
+        window.addEventListener('load', () => {
+            const saved = localStorage.getItem('selectedLang');
+            if (saved && saved !== 'ar') {
+                setTimeout(() => {
+                    const opt = document.querySelector(`.lang-option[data-lang="${saved}"]`);
+                    if (opt) opt.click();
+                }, 1500);
+            }
+        });
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateInit"></script>
+</body>
+</html>
