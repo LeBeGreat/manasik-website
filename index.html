@@ -257,17 +257,17 @@
             position: absolute;
             top: calc(100% + 8px);
             inset-inline-end: 0;
-            background: var(--white);
+            background: #ffffff;
             border-radius: 14px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.25);
             padding: 8px;
-            min-width: 200px;
+            width: 220px;
             max-height: 380px;
             overflow-y: auto;
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
-            transition: var(--transition);
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
             z-index: 1001;
         }
 
@@ -278,36 +278,40 @@
         }
 
         .lang-option {
-            display: flex;
+            display: flex !important;
             align-items: center;
             gap: 12px;
             padding: 10px 14px;
             border-radius: 8px;
-            color: var(--black);
-            font-size: 0.92rem;
-            font-weight: 500;
+            color: #1A1A1A !important;
+            font-size: 0.95rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: var(--transition);
+            transition: background 0.2s ease, color 0.2s ease;
             text-decoration: none;
+            white-space: nowrap;
         }
 
         .lang-option:hover {
-            background: rgba(200, 160, 69, 0.1);
-            color: var(--gold-dark);
+            background: rgba(200, 160, 69, 0.12);
+            color: #A07A20 !important;
         }
 
         .lang-option.active {
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            color: var(--white);
+            background: linear-gradient(135deg, #C8A045, #A07A20);
+            color: #ffffff !important;
         }
 
         .lang-option .flag {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             line-height: 1;
+            flex-shrink: 0;
         }
 
         .lang-option .name {
-            flex: 1;
+            flex: 1 1 auto;
+            color: inherit;
+            font-family: 'Cairo', system-ui, -apple-system, 'Segoe UI', sans-serif;
         }
 
         /* Header tools wrapper */
@@ -338,7 +342,13 @@
 
             .lang-dropdown {
                 inset-inline-end: 0;
-                min-width: 180px;
+                width: 200px;
+                max-height: 70vh;
+            }
+
+            .lang-option {
+                padding: 12px 14px;
+                font-size: 0.95rem;
             }
         }
 
@@ -1922,6 +1932,8 @@
                         <a class="lang-option" data-lang="fr"><span class="flag">🇫🇷</span><span class="name">Français</span></a>
                         <a class="lang-option" data-lang="hi"><span class="flag">🇮🇳</span><span class="name">हिन्दी</span></a>
                         <a class="lang-option" data-lang="uz"><span class="flag">🇺🇿</span><span class="name">Oʻzbek</span></a>
+                        <a class="lang-option" data-lang="ha"><span class="flag">🇳🇬</span><span class="name">Hausa</span></a>
+                        <a class="lang-option" data-lang="sw"><span class="flag">🇹🇿</span><span class="name">Kiswahili</span></a>
                     </div>
                 </div>
 
@@ -3467,6 +3479,200 @@
                 "footer.s5": "Mijozlarni qo'llab-quvvatlash",
                 "footer.hours": "24/7 mavjud",
                 "footer.copyright": 'Barcha huquqlar himoyalangan &copy; 2026 <span>Manasik Visitors Umra xizmatlari uchun</span>'
+            },
+            ha: {
+                "nav.home": "Gida",
+                "nav.about": "Game da Mu",
+                "nav.services": "Ayyukanmu",
+                "nav.why": "Me ya sa Mu",
+                "nav.gallery": "Hotuna",
+                "nav.licenses": "Lasisi",
+                "nav.contact": "Tuntube Mu",
+                "hero.badge": "Abokin tafiyar Umrah na ku amintacce",
+                "hero.title": 'Tafiyar Umrah <span class="gold">marar mantuwa</span><br>tana farawa anan',
+                "hero.subtitle": "Muna ba da cikakken sabis na Umrah tare da mafi girman matakan inganci da kwanciyar hankali — daga ajiyar otal masu daraja zuwa sufuri mai dadi da jagora ƙwararru.",
+                "hero.cta1": "Yi Umrah a yanzu",
+                "hero.cta2": "Bincika ayyukanmu",
+                "hero.stat1": "Bizar Umrah",
+                "hero.stat2": "Shekarun gogewa",
+                "hero.stat3": "Tallafi mai gudana",
+                "about.label": "Game da Mu",
+                "about.title": 'Manasik Visitors don <span>Sabis na Umrah</span>',
+                "about.p1": "Mu kamfani ne na Saudi Arabiya wanda ya kware a cikin cikakken sabis na Umrah. Muna ƙoƙari mu ba da gogewar ruhi mai dadi da ma'ana ga kowane mahajjaci, daga isowarsa Saudi Arabiya har zuwa tafiyarsa.",
+                "about.p2": "Mun yi imani cewa tafiyar Umrah ya kamata ta kasance ba tare da rikitarwa ba, don haka muna kula da duk shirye-shiryen kayan aiki domin ku mai da hankali kan ibada.",
+                "about.f1": "Cikakken ayyuka",
+                "about.f2": "Ƙungiyar ƙwararru",
+                "about.f3": "Farashi masu kyau",
+                "about.f4": "Gamsuwar abokan ciniki",
+                "about.tagline": "Umrah • Otal • Sufuri",
+                "services.label": "Ayyukanmu",
+                "services.title": "Cikakken sabis na Umrah",
+                "services.desc": "Iri-iri na ayyuka da aka tsara don biyan duk bukatunku a lokacin tafiyar Umrah.",
+                "services.s1.title": "Tsarin tafiyar Umrah",
+                "services.s1.desc": "Cikakken tsari na Umrah tare da shirye-shirye don kowane kasafin kuɗi, tare da tabbatar da gogewar ruhi mafi kyau.",
+                "services.s2.title": "Ajiyar otal",
+                "services.s2.desc": "Ajiyar a otal mafi kyau kusa da Masallacin Haramun da Masallacin Annabi a farashi mai kyau.",
+                "services.s3.title": "Sabis na sufuri",
+                "services.s3.desc": "Motoci na zamani masu sanyaya iska don tafiya cikin aminci da dadi tsakanin garuruwan tsarki.",
+                "services.s4.title": "Jagorori ƙwararru",
+                "services.s4.desc": "Jagorori na addini da yawon shakatawa masu gogewa waɗanda suke tare da ku a duk tafiyar.",
+                "services.s5.title": "Tallafi 24/7",
+                "services.s5.desc": "Ƙungiyar tallafi tana nan a kowane lokaci don amsa tambayoyinku da biyan bukatunku.",
+                "services.s6.title": "Abinci da karɓar baƙi",
+                "services.s6.desc": "Abinci iri-iri masu inganci waɗanda suka dace da daban-daban dandano tare da sabis na karɓar baƙi mai daraja.",
+                "why.label": "Me ya sa ku zaɓe mu",
+                "why.title": "Me ya sa za ku zaɓi Manasik Visitors?",
+                "why.desc": "Muna ba da fitattun ayyuka waɗanda suke sa tafiyar Umrah ba ta mantuwa.",
+                "why.w1.title": "Gogewa mai zurfi",
+                "why.w1.desc": "Sama da shekaru 15 na gogewa wajen tsara tafiye-tafiyen Umrah da hidimar dubban mahajjata.",
+                "why.w2.title": "Ƙungiyar ƙwararru",
+                "why.w2.desc": "Ƙungiya da ta cancanta kuma horon su don ba da sabis mafi kyau.",
+                "why.w3.title": "Inganci mai girma",
+                "why.w3.desc": "Muna kiyaye mafi girman matakan inganci a duk ayyukanmu.",
+                "why.w4.title": "Cikakken kulawa",
+                "why.w4.desc": "Cikakken kulawa daga isowa zuwa tafiya tare da kulawa ga ƙananan bayanai.",
+                "why.w5.title": "Farashi masu kyau",
+                "why.w5.desc": "Fakitoci iri-iri a farashi masu kyau don kowane kasafin kuɗi ba tare da rage inganci ba.",
+                "why.w6.title": "Amincewa da aminci",
+                "why.w6.desc": "Kamfani mai lasisi da takaddun shaida wanda ke ba da garantin tafiya mai aminci.",
+                "gallery.label": "Abubuwan da muke yi",
+                "gallery.title": "Halartar mu a cikin nune-nune da abubuwan da suka faru",
+                "gallery.desc": "Muna shiga manyan nune-nune da abubuwan da suka faru a fannin Hajji da Umrah, muna saduwa da fitattun mutane da abokan tarayya.",
+                "gallery.more": "Nuna ƙarin hotuna",
+                "licenses.label": "Lasisi da takaddun shaida",
+                "licenses.title": "Kamfani mai lasisi da takaddun shaida",
+                "licenses.desc": "Muna aiki a ƙarƙashin lasisi na hukuma waɗanda hukumomi suka amince da su a Saudi Arabiya.",
+                "licenses.l1.title": "Lasisin Umrah da Hajji",
+                "licenses.l1.desc": "An amince da shi ta hannun Ma'aikatar Hajji da Umrah",
+                "licenses.l2.title": "Rajistar kasuwanci",
+                "licenses.l2.desc": "Rajistar kasuwanci mai inganci kuma an rubuta shi a hukumance",
+                "cta.title": "Shirye don tafiyar Umrah marar mantuwa?",
+                "cta.desc": "Tuntube mu yanzu kuma yi ajiyar tafiyarka ta gaba tare da Manasik Visitors.",
+                "cta.btn1": "Tuntuba ta WhatsApp",
+                "cta.btn2": "Kira mu",
+                "contact.label": "Tuntube mu",
+                "contact.title": "Muna farin cikin jinka",
+                "contact.desc": "Kar ka yi jinkiri don tuntube mu don kowace tambaya ko don yin ajiyar tafiyar Umrah ta gaba.",
+                "contact.info": "Bayanan tuntuɓa",
+                "contact.intro": "Tuntube mu ta cikin daya daga cikin hanyoyin da ke ƙasa. Ƙungiyarmu ta shirya ta amsa duk tambayoyinku.",
+                "contact.phone": "Waya",
+                "contact.whatsapp": "WhatsApp",
+                "contact.email": "Imel",
+                "contact.location": "Wuri",
+                "contact.address": "Al Salwa Tower, Hawa na 8, Al Rusayfah, Makkah 24232",
+                "contact.hours": "Lokacin aiki",
+                "contact.hours_value": "Sa'o'i 24 / Kwanaki 7",
+                "contact.our_location": "Wurinmu",
+                "contact.short_address": "Al Salwa Tower - Hawa na 8 - Makkah",
+                "contact.map_load": "Danna don ɗora taswira",
+                "footer.brand": "Manasik Visitors don Sabis na Umrah — abokin tafiyar Umrah na ku amintacce a Saudi Arabiya.",
+                "footer.quicklinks": "Hanyoyin sauri",
+                "footer.services_title": "Ayyukanmu",
+                "footer.contact_title": "Tuntube mu",
+                "footer.s1": "Tafiye-tafiyen Umrah",
+                "footer.s2": "Ajiyar otal",
+                "footer.s3": "Sufuri",
+                "footer.s4": "Jagorori",
+                "footer.s5": "Tallafin abokan ciniki",
+                "footer.hours": "Akwai 24/7",
+                "footer.copyright": 'Duk haƙƙoƙi sun tanada &copy; 2026 <span>Manasik Visitors don Sabis na Umrah</span>'
+            },
+            sw: {
+                "nav.home": "Mwanzo",
+                "nav.about": "Kuhusu Sisi",
+                "nav.services": "Huduma",
+                "nav.why": "Kwa Nini Sisi",
+                "nav.gallery": "Picha",
+                "nav.licenses": "Leseni",
+                "nav.contact": "Wasiliana",
+                "hero.badge": "Mshirika wako wa kuaminika kwa safari ya Umrah",
+                "hero.title": 'Safari ya Umrah <span class="gold">isiyosahaulika</span><br>inaanzia hapa',
+                "hero.subtitle": "Tunatoa huduma kamili za Umrah kwa viwango vya juu vya ubora na faraja — kuanzia uhifadhi wa hoteli za kifahari hadi usafiri wa starehe na uongozi wa kitaalamu.",
+                "hero.cta1": "Hifadhi Umrah yako sasa",
+                "hero.cta2": "Gundua huduma zetu",
+                "hero.stat1": "Visa za Umrah",
+                "hero.stat2": "Miaka ya uzoefu",
+                "hero.stat3": "Msaada endelevu",
+                "about.label": "Kuhusu sisi",
+                "about.title": 'Manasik Visitors kwa <span>Huduma za Umrah</span>',
+                "about.p1": "Sisi ni kampuni ya Saudi inayobobea katika kutoa huduma kamili za Umrah. Tunajitahidi kutoa uzoefu wa kiroho wa starehe na wenye maana kwa kila mhujaji, kuanzia anapowasili Saudi Arabia hadi anapoondoka.",
+                "about.p2": "Tunaamini safari ya Umrah inapaswa kuwa bila matatizo, kwa hiyo tunashughulikia mipangilio yote ya kimaisha ili wewe uweze kuzingatia ibada.",
+                "about.f1": "Huduma kamili",
+                "about.f2": "Timu ya wataalamu",
+                "about.f3": "Bei nzuri",
+                "about.f4": "Kuridhika kwa wateja",
+                "about.tagline": "Umrah • Hoteli • Usafiri",
+                "services.label": "Huduma zetu",
+                "services.title": "Huduma kamili za Umrah",
+                "services.desc": "Anuwai ya huduma zilizoundwa kukidhi mahitaji yako yote wakati wa safari ya Umrah.",
+                "services.s1.title": "Mpangilio wa safari ya Umrah",
+                "services.s1.desc": "Mpangilio kamili wa Umrah na programu kwa kila bajeti, kuhakikisha uzoefu bora wa kiroho.",
+                "services.s2.title": "Uhifadhi wa hoteli",
+                "services.s2.desc": "Uhifadhi katika hoteli bora karibu na Msikiti Mtakatifu na Msikiti wa Mtume kwa bei nzuri.",
+                "services.s3.title": "Huduma za usafiri",
+                "services.s3.desc": "Magari ya kisasa yenye kiyoyozi kwa safari salama na ya starehe kati ya miji mitakatifu.",
+                "services.s4.title": "Waongozi wa kitaalamu",
+                "services.s4.desc": "Waongozi wa dini na utalii wenye uzoefu wanaokuandamana wakati wote wa safari.",
+                "services.s5.title": "Msaada wa 24/7",
+                "services.s5.desc": "Timu yetu ya msaada inapatikana wakati wote kujibu maswali yako na kukidhi mahitaji yako.",
+                "services.s6.title": "Chakula na ukarimu",
+                "services.s6.desc": "Chakula cha aina mbalimbali na cha hali ya juu kinachoendana na ladha tofauti pamoja na huduma ya ukarimu bora.",
+                "why.label": "Kwa nini utuchague",
+                "why.title": "Kwa nini uchague Manasik Visitors?",
+                "why.desc": "Tunatofautiana kwa kutoa huduma za kipekee zinazofanya safari yako ya Umrah isiyosahaulika.",
+                "why.w1.title": "Uzoefu mpana",
+                "why.w1.desc": "Zaidi ya miaka 15 ya uzoefu katika kupanga safari za Umrah na kuhudumia maelfu ya mahujaji.",
+                "why.w2.title": "Timu ya wataalamu",
+                "why.w2.desc": "Timu iliyohitimu na kufundishwa vizuri kutoa huduma bora.",
+                "why.w3.title": "Ubora wa hali ya juu",
+                "why.w3.desc": "Tunadumisha viwango vya juu zaidi vya ubora katika huduma zetu zote.",
+                "why.w4.title": "Utunzaji kamili",
+                "why.w4.desc": "Utunzaji wa kuendana kuanzia kufika hadi kuondoka kwa makini kwa maelezo madogo kabisa.",
+                "why.w5.title": "Bei nzuri",
+                "why.w5.desc": "Vifurushi mbalimbali kwa bei nzuri kwa kila bajeti bila kupunguza ubora.",
+                "why.w6.title": "Imani na usalama",
+                "why.w6.desc": "Kampuni iliyosajiliwa na kuthibitishwa inayohakikisha safari salama na inayoaminika.",
+                "gallery.label": "Matukio yetu",
+                "gallery.title": "Uwepo wetu katika maonyesho na matukio",
+                "gallery.desc": "Tunashiriki katika matukio na maonyesho makuu katika sekta ya Hijja na Umrah, tukikutana na watu na washirika maarufu.",
+                "gallery.more": "Onyesha picha zaidi",
+                "licenses.label": "Leseni na uthibitisho",
+                "licenses.title": "Kampuni iliyosajiliwa na kuthibitishwa",
+                "licenses.desc": "Tunafanya kazi chini ya leseni rasmi zilizoidhinishwa na mamlaka husika nchini Saudi Arabia.",
+                "licenses.l1.title": "Leseni ya Umrah na Hijja",
+                "licenses.l1.desc": "Imeidhinishwa na Wizara ya Hijja na Umrah",
+                "licenses.l2.title": "Usajili wa biashara",
+                "licenses.l2.desc": "Usajili wa biashara halali na uliodhibitishwa rasmi",
+                "cta.title": "Uko tayari kwa safari ya Umrah isiyosahaulika?",
+                "cta.desc": "Wasiliana nasi sasa na hifadhi safari yako ijayo na Manasik Visitors.",
+                "cta.btn1": "Ongea kwenye WhatsApp",
+                "cta.btn2": "Tupigie simu",
+                "contact.label": "Wasiliana nasi",
+                "contact.title": "Tunafurahi kusikia kutoka kwako",
+                "contact.desc": "Usisite kuwasiliana nasi kwa swali lolote au kuhifadhi safari yako ijayo ya Umrah.",
+                "contact.info": "Maelezo ya mawasiliano",
+                "contact.intro": "Wasiliana nasi kupitia njia yoyote ifuatayo. Timu yetu iko tayari kujibu maswali yako yote.",
+                "contact.phone": "Simu",
+                "contact.whatsapp": "WhatsApp",
+                "contact.email": "Barua pepe",
+                "contact.location": "Mahali",
+                "contact.address": "Al Salwa Tower, Ghorofa ya 8, Al Rusayfah, Makkah 24232",
+                "contact.hours": "Saa za kazi",
+                "contact.hours_value": "Saa 24 / Siku 7",
+                "contact.our_location": "Mahali petu",
+                "contact.short_address": "Al Salwa Tower - Ghorofa ya 8 - Makkah",
+                "contact.map_load": "Bofya kupakia ramani",
+                "footer.brand": "Manasik Visitors kwa Huduma za Umrah — mshirika wako wa kuaminika kwa safari ya Umrah ya starehe na ya kipekee Saudi Arabia.",
+                "footer.quicklinks": "Viungo vya haraka",
+                "footer.services_title": "Huduma zetu",
+                "footer.contact_title": "Wasiliana nasi",
+                "footer.s1": "Safari za Umrah",
+                "footer.s2": "Uhifadhi wa hoteli",
+                "footer.s3": "Usafiri",
+                "footer.s4": "Waongozi",
+                "footer.s5": "Msaada wa wateja",
+                "footer.hours": "Inapatikana 24/7",
+                "footer.copyright": 'Haki zote zimehifadhiwa &copy; 2026 <span>Manasik Visitors kwa Huduma za Umrah</span>'
             }
         };
 
@@ -3480,7 +3686,9 @@
             fa: { name: "فارسی", flag: "🇮🇷", dir: "rtl" },
             fr: { name: "Français", flag: "🇫🇷", dir: "ltr" },
             hi: { name: "हिन्दी", flag: "🇮🇳", dir: "ltr" },
-            uz: { name: "Oʻzbek", flag: "🇺🇿", dir: "ltr" }
+            uz: { name: "Oʻzbek", flag: "🇺🇿", dir: "ltr" },
+            ha: { name: "Hausa", flag: "🇳🇬", dir: "ltr" },
+            sw: { name: "Kiswahili", flag: "🇹🇿", dir: "ltr" }
         };
 
         // ===== WhatsApp Auto-Messages =====
