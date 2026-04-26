@@ -310,45 +310,35 @@
             flex: 1;
         }
 
-        /* Mobile: lang switcher inside menu */
+        /* Header tools wrapper */
+        .header-tools {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Mobile lang switcher in header */
         @media (max-width: 768px) {
-            .lang-switcher {
-                position: static;
-                margin: 16px 0 8px;
-                width: 100%;
+            .lang-current {
+                padding: 6px 10px;
+                font-size: 0.78rem;
             }
 
-            .lang-current {
-                width: 100%;
-                justify-content: space-between;
+            .lang-current .lang-current-name {
+                display: none;
+            }
+
+            .lang-current .flag {
+                font-size: 1.25rem;
+            }
+
+            .lang-current .chevron {
+                font-size: 0.65rem;
             }
 
             .lang-dropdown {
-                position: static;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                box-shadow: none;
-                background: rgba(255,255,255,0.05);
-                margin-top: 8px;
-                max-height: 0;
-                padding: 0 8px;
-                overflow: hidden;
-                transition: max-height 0.3s ease, padding 0.3s ease;
-            }
-
-            .lang-switcher.open .lang-dropdown {
-                max-height: 500px;
-                padding: 8px;
-            }
-
-            .lang-option {
-                color: rgba(255,255,255,0.85);
-            }
-
-            .lang-option:hover {
-                color: var(--gold);
-                background: rgba(200, 160, 69, 0.15);
+                inset-inline-end: 0;
+                min-width: 180px;
             }
         }
 
@@ -1912,7 +1902,9 @@
                 <a href="#gallery" data-i18n="nav.gallery">معرض الصور</a>
                 <a href="#licenses" data-i18n="nav.licenses">التراخيص</a>
                 <a href="#contact" class="nav-cta" data-i18n="nav.contact">تواصل معنا</a>
+            </nav>
 
+            <div class="header-tools">
                 <div class="lang-switcher" id="langSwitcher">
                     <button class="lang-current" id="langCurrent" aria-label="Language">
                         <span class="flag">🌐</span>
@@ -1932,12 +1924,12 @@
                         <a class="lang-option" data-lang="uz"><span class="flag">🇺🇿</span><span class="name">Oʻzbek</span></a>
                     </div>
                 </div>
-            </nav>
 
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <div class="menu-toggle" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
     </header>
@@ -2363,6 +2355,16 @@
                         </div>
                     </a>
 
+                    <a href="mailto:info@Manasik.sa" class="contact-item">
+                        <div class="contact-item-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-item-text">
+                            <div class="label" data-i18n="contact.email">البريد الإلكتروني</div>
+                            <div class="value">info@Manasik.sa</div>
+                        </div>
+                    </a>
+
                     <a href="https://maps.app.goo.gl/sR3StfCchPCw8afD8" target="_blank" rel="noopener" class="contact-item">
                         <div class="contact-item-icon">
                             <i class="fas fa-map-marker-alt"></i>
@@ -2423,10 +2425,10 @@
                     </a>
                     <p data-i18n="footer.brand">شركة مناسك الزوار لخدمات المعتمرين - شريكك الموثوق لرحلة عمرة مريحة ومميزة في المملكة العربية السعودية.</p>
                     <div class="footer-social">
-                        <a href="#" aria-label="تويتر"><i class="fab fa-x-twitter"></i></a>
-                        <a href="#" aria-label="انستغرام"><i class="fab fa-instagram"></i></a>
+                        <a href="mailto:info@Manasik.sa" aria-label="البريد الإلكتروني"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.facebook.com/manasikalzwar" target="_blank" rel="noopener" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/manasik_visitors" target="_blank" rel="noopener" aria-label="انستغرام"><i class="fab fa-instagram"></i></a>
                         <a href="#" data-wa-message="general" target="_blank" aria-label="واتساب" class="wa-link"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" aria-label="سناب شات"><i class="fab fa-snapchat-ghost"></i></a>
                     </div>
                 </div>
 
@@ -2461,6 +2463,10 @@
                     <div class="footer-contact-item">
                         <i class="fab fa-whatsapp"></i>
                         <span style="direction:ltr;display:inline-block">+966 50 499 3272</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span style="direction:ltr;display:inline-block">info@Manasik.sa</span>
                     </div>
                     <div class="footer-contact-item">
                         <i class="fas fa-map-marker-alt"></i>
@@ -2569,6 +2575,7 @@
                 "contact.intro": "يسعدنا تواصلكم معنا عبر أي من القنوات التالية. فريقنا جاهز للرد على جميع استفساراتكم.",
                 "contact.phone": "رقم الهاتف",
                 "contact.whatsapp": "واتساب",
+                "contact.email": "البريد الإلكتروني",
                 "contact.location": "الموقع",
                 "contact.address": "برج السلوى، الطابق ٨، الرصيفة، مكة المكرمة ٢٤٢٣٢",
                 "contact.hours": "ساعات العمل",
@@ -2665,6 +2672,7 @@
                 "contact.intro": "Reach us through any of the following channels. Our team is ready to answer all your questions.",
                 "contact.phone": "Phone",
                 "contact.whatsapp": "WhatsApp",
+                "contact.email": "Email",
                 "contact.location": "Location",
                 "contact.address": "Al Salwa Tower, 8th Floor, Al Rusayfah, Makkah 24232",
                 "contact.hours": "Working hours",
@@ -2761,6 +2769,7 @@
                 "contact.intro": "Aşağıdaki kanallardan herhangi biriyle bize ulaşabilirsiniz. Ekibimiz tüm sorularınızı yanıtlamaya hazır.",
                 "contact.phone": "Telefon",
                 "contact.whatsapp": "WhatsApp",
+                "contact.email": "E-posta",
                 "contact.location": "Konum",
                 "contact.address": "Al Salwa Tower, 8. Kat, Al Rusayfah, Mekke 24232",
                 "contact.hours": "Çalışma saatleri",
@@ -2857,6 +2866,7 @@
                 "contact.intro": "Hubungi kami melalui salah satu saluran berikut. Tim kami siap menjawab semua pertanyaan Anda.",
                 "contact.phone": "Telepon",
                 "contact.whatsapp": "WhatsApp",
+                "contact.email": "Email",
                 "contact.location": "Lokasi",
                 "contact.address": "Al Salwa Tower, Lantai 8, Al Rusayfah, Makkah 24232",
                 "contact.hours": "Jam kerja",
@@ -2953,6 +2963,7 @@
                 "contact.intro": "Hubungi kami melalui mana-mana saluran berikut. Pasukan kami bersedia menjawab semua pertanyaan anda.",
                 "contact.phone": "Telefon",
                 "contact.whatsapp": "WhatsApp",
+                "contact.email": "E-mel",
                 "contact.location": "Lokasi",
                 "contact.address": "Al Salwa Tower, Tingkat 8, Al Rusayfah, Makkah 24232",
                 "contact.hours": "Waktu operasi",
@@ -3049,6 +3060,7 @@
                 "contact.intro": "درج ذیل چینلز میں سے کسی کے ذریعے ہم سے رابطہ کریں۔ ہماری ٹیم آپ کے تمام سوالات کے جوابات کے لیے تیار ہے۔",
                 "contact.phone": "فون",
                 "contact.whatsapp": "واٹس ایپ",
+                "contact.email": "ای میل",
                 "contact.location": "مقام",
                 "contact.address": "السلوى ٹاور، 8 ویں منزل، الرصیفہ، مکہ 24232",
                 "contact.hours": "کام کے اوقات",
@@ -3145,6 +3157,7 @@
                 "contact.intro": "از طریق هر یک از کانال‌های زیر با ما در تماس باشید. تیم ما آماده پاسخگویی به همه سوالات شماست.",
                 "contact.phone": "تلفن",
                 "contact.whatsapp": "واتس‌اپ",
+                "contact.email": "ایمیل",
                 "contact.location": "موقعیت",
                 "contact.address": "برج السلوی، طبقه ۸، الرصیفه، مکه ۲۴۲۳۲",
                 "contact.hours": "ساعات کاری",
@@ -3241,6 +3254,7 @@
                 "contact.intro": "Joignez-nous via l'un des canaux suivants. Notre équipe est prête à répondre à toutes vos questions.",
                 "contact.phone": "Téléphone",
                 "contact.whatsapp": "WhatsApp",
+                "contact.email": "E-mail",
                 "contact.location": "Emplacement",
                 "contact.address": "Tour Al Salwa, 8e étage, Al Rusayfah, La Mecque 24232",
                 "contact.hours": "Heures d'ouverture",
@@ -3337,6 +3351,7 @@
                 "contact.intro": "निम्नलिखित चैनलों में से किसी के माध्यम से हम तक पहुँचें। हमारी टीम आपके सभी प्रश्नों का उत्तर देने के लिए तैयार है।",
                 "contact.phone": "फ़ोन",
                 "contact.whatsapp": "व्हाट्सएप",
+                "contact.email": "ईमेल",
                 "contact.location": "स्थान",
                 "contact.address": "अल सलवा टॉवर, 8वीं मंजिल, अल रुसैफा, मक्का 24232",
                 "contact.hours": "कार्य समय",
@@ -3433,6 +3448,7 @@
                 "contact.intro": "Quyidagi kanallarning birortasi orqali biz bilan bog'laning. Bizning jamoamiz barcha savollaringizga javob berishga tayyor.",
                 "contact.phone": "Telefon",
                 "contact.whatsapp": "WhatsApp",
+                "contact.email": "Email",
                 "contact.location": "Manzil",
                 "contact.address": "Al Salwa minorasi, 8-qavat, Al Rusayfah, Makka 24232",
                 "contact.hours": "Ish vaqti",
