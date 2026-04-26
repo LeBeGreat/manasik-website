@@ -1217,6 +1217,43 @@
             opacity: 1;
         }
 
+        .gallery-item.is-hidden {
+            display: none;
+        }
+
+        .gallery-load-more {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .btn-load-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 36px;
+            background: var(--white);
+            color: var(--gold-dark);
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-load-more:hover {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(200, 160, 69, 0.3);
+        }
+
+        .btn-load-more.is-hidden {
+            display: none;
+        }
+
         /* ===== Licenses Section ===== */
         .licenses {
             background: var(--white);
@@ -1391,6 +1428,36 @@
             min-height: 450px;
             border: 0;
             display: block;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            min-height: 450px;
+            background: linear-gradient(135deg, #f5f1e6 0%, #e8d9b0 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--gold-dark);
+        }
+
+        .map-placeholder:hover {
+            background: linear-gradient(135deg, #ede5d0 0%, #d8c587 100%);
+        }
+
+        .map-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 16px;
+            color: var(--gold);
+        }
+
+        .map-placeholder p {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--black);
         }
 
         .map-overlay {
@@ -1835,54 +1902,57 @@
                 <div class="gallery-item animate-on-scroll">
                     <img src="images/b142.jpg" alt="فعالية" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-item animate-on-scroll">
-                    <img src="images/b143.jpg" alt="فعالية" loading="lazy" decoding="async">
+                <div class="gallery-item animate-on-scroll is-hidden">
+                    <img data-src="images/b143.jpg" alt="فعالية" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-item animate-on-scroll">
-                    <img src="images/b148.jpg" alt="فعالية" loading="lazy" decoding="async">
+                <div class="gallery-item animate-on-scroll is-hidden">
+                    <img data-src="images/b148.jpg" alt="فعالية" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-item animate-on-scroll">
-                    <img src="images/b149.jpg" alt="فعالية" loading="lazy" decoding="async">
+                <div class="gallery-item animate-on-scroll is-hidden">
+                    <img data-src="images/b149.jpg" alt="فعالية" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-item animate-on-scroll">
-                    <img src="images/b151.jpg" alt="فعالية" loading="lazy" decoding="async">
+                <div class="gallery-item animate-on-scroll is-hidden">
+                    <img data-src="images/b151.jpg" alt="فعالية" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-item animate-on-scroll">
-                    <img src="images/b152.jpg" alt="فعالية" loading="lazy" decoding="async">
+                <div class="gallery-item animate-on-scroll is-hidden">
+                    <img data-src="images/b152.jpg" alt="فعالية" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-item animate-on-scroll">
-                    <img src="images/b154.jpg" alt="فعالية" loading="lazy" decoding="async">
+                <div class="gallery-item animate-on-scroll is-hidden">
+                    <img data-src="images/b154.jpg" alt="فعالية" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-item animate-on-scroll">
-                    <img src="images/b155.jpg" alt="فعالية" loading="lazy" decoding="async">
+                <div class="gallery-item animate-on-scroll is-hidden">
+                    <img data-src="images/b155.jpg" alt="فعالية" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-item animate-on-scroll">
-                    <img src="images/b161.jpg" alt="فعالية" loading="lazy" decoding="async">
+                <div class="gallery-item animate-on-scroll is-hidden">
+                    <img data-src="images/b161.jpg" alt="فعالية" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-item animate-on-scroll">
-                    <img src="images/b163.jpg" alt="فعالية" loading="lazy" decoding="async">
+                <div class="gallery-item animate-on-scroll is-hidden">
+                    <img data-src="images/b163.jpg" alt="فعالية" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-item animate-on-scroll">
-                    <img src="images/b165.jpg" alt="فعالية" loading="lazy" decoding="async">
+                <div class="gallery-item animate-on-scroll is-hidden">
+                    <img data-src="images/b165.jpg" alt="فعالية" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-item animate-on-scroll">
-                    <img src="images/b166.jpg" alt="فعالية" loading="lazy" decoding="async">
+                <div class="gallery-item animate-on-scroll is-hidden">
+                    <img data-src="images/b166.jpg" alt="فعالية" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-item animate-on-scroll">
-                    <img src="images/b167.jpg" alt="فعالية" loading="lazy" decoding="async">
+                <div class="gallery-item animate-on-scroll is-hidden">
+                    <img data-src="images/b167.jpg" alt="فعالية" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-item animate-on-scroll">
-                    <img src="images/b170.jpg" alt="فعالية" loading="lazy" decoding="async">
+                <div class="gallery-item animate-on-scroll is-hidden">
+                    <img data-src="images/b170.jpg" alt="فعالية" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-item animate-on-scroll">
-                    <img src="images/b171.jpg" alt="فعالية" loading="lazy" decoding="async">
+                <div class="gallery-item animate-on-scroll is-hidden">
+                    <img data-src="images/b171.jpg" alt="فعالية" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-item animate-on-scroll">
-                    <img src="images/b178.jpg" alt="فعالية" loading="lazy" decoding="async">
+                <div class="gallery-item animate-on-scroll is-hidden">
+                    <img data-src="images/b178.jpg" alt="فعالية" loading="lazy" decoding="async">
                 </div>
-                <div class="gallery-item animate-on-scroll">
-                    <img src="images/b150.jpg" alt="فعالية" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">
-                </div>
+            </div>
+            <div class="gallery-load-more">
+                <button class="btn-load-more" id="loadMoreGallery">
+                    <i class="fas fa-images"></i>
+                    عرض المزيد من الصور
+                </button>
             </div>
         </div>
     </section>
@@ -2031,13 +2101,19 @@
                     </div>
                 </div>
 
-                <div class="map-wrapper animate-on-scroll">
+                <div class="map-wrapper animate-on-scroll" id="mapWrapper">
+                    <div class="map-placeholder" id="mapPlaceholder">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <p>اضغط لعرض الخريطة</p>
+                    </div>
                     <iframe
-                        src="https://maps.google.com/maps?q=Al+Salwa+Tower+Al+Rusayfah+Makkah+24232&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                        id="mapIframe"
+                        data-src="https://maps.google.com/maps?q=Al+Salwa+Tower+Al+Rusayfah+Makkah+24232&t=&z=16&ie=UTF8&iwloc=&output=embed"
                         loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"
                         allowfullscreen
-                        title="موقعنا على الخريطة"></iframe>
+                        title="موقعنا على الخريطة"
+                        style="display:none"></iframe>
                     <a href="https://maps.app.goo.gl/sR3StfCchPCw8afD8" target="_blank" rel="noopener" class="map-overlay">
                         <i class="fas fa-map-marker-alt"></i>
                         <div class="map-overlay-text">
@@ -2243,14 +2319,60 @@
         document.querySelectorAll('.gallery-item').forEach(item => {
             item.addEventListener('click', function() {
                 const img = this.querySelector('img');
-                if (img && img.complete && img.naturalHeight !== 0) {
-                    lightboxImg.src = img.src;
+                if (!img) return;
+                const src = img.src || img.getAttribute('data-src');
+                if (src) {
+                    lightboxImg.src = src;
                     lightboxImg.alt = img.alt;
                     lightbox.classList.add('active');
                     document.body.style.overflow = 'hidden';
                 }
             });
         });
+
+        // ===== Lazy Load Google Maps =====
+        const mapPlaceholder = document.getElementById('mapPlaceholder');
+        const mapIframe = document.getElementById('mapIframe');
+
+        function loadMap() {
+            if (mapIframe && mapIframe.dataset.src && !mapIframe.src) {
+                mapIframe.src = mapIframe.dataset.src;
+                mapIframe.style.display = 'block';
+                if (mapPlaceholder) mapPlaceholder.style.display = 'none';
+            }
+        }
+
+        if (mapPlaceholder) {
+            mapPlaceholder.addEventListener('click', loadMap);
+        }
+
+        if ('IntersectionObserver' in window && mapIframe) {
+            const mapObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        loadMap();
+                        mapObserver.disconnect();
+                    }
+                });
+            }, { rootMargin: '200px' });
+            mapObserver.observe(document.getElementById('mapWrapper'));
+        }
+
+        // ===== Gallery Load More =====
+        const loadMoreBtn = document.getElementById('loadMoreGallery');
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', function() {
+                const hidden = document.querySelectorAll('.gallery-item.is-hidden');
+                hidden.forEach(item => {
+                    const img = item.querySelector('img');
+                    if (img && img.dataset.src && !img.src) {
+                        img.src = img.dataset.src;
+                    }
+                    item.classList.remove('is-hidden');
+                });
+                this.classList.add('is-hidden');
+            });
+        }
 
         lightbox.addEventListener('click', function(e) {
             if (e.target === lightbox || e.target === lightboxClose || lightboxClose.contains(e.target)) {
