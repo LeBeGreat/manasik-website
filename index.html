@@ -212,6 +212,146 @@
             box-shadow: 0 4px 15px rgba(200, 160, 69, 0.4);
         }
 
+        /* ===== Language Switcher ===== */
+        .lang-switcher {
+            position: relative;
+            margin-inline-end: 8px;
+        }
+
+        .lang-current {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(200, 160, 69, 0.1);
+            border: 1px solid rgba(200, 160, 69, 0.25);
+            color: var(--gold-lighter);
+            padding: 7px 14px;
+            border-radius: 50px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lang-current:hover {
+            background: rgba(200, 160, 69, 0.18);
+            border-color: rgba(200, 160, 69, 0.4);
+        }
+
+        .lang-current .flag {
+            font-size: 1.05rem;
+            line-height: 1;
+        }
+
+        .lang-current .chevron {
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+
+        .lang-switcher.open .chevron {
+            transform: rotate(180deg);
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            inset-inline-end: 0;
+            background: var(--white);
+            border-radius: 14px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+            padding: 8px;
+            min-width: 200px;
+            max-height: 380px;
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            z-index: 1001;
+        }
+
+        .lang-switcher.open .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            color: var(--black);
+            font-size: 0.92rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .lang-option:hover {
+            background: rgba(200, 160, 69, 0.1);
+            color: var(--gold-dark);
+        }
+
+        .lang-option.active {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--white);
+        }
+
+        .lang-option .flag {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .lang-option .name {
+            flex: 1;
+        }
+
+        /* Mobile: lang switcher inside menu */
+        @media (max-width: 768px) {
+            .lang-switcher {
+                position: static;
+                margin: 16px 0 8px;
+                width: 100%;
+            }
+
+            .lang-current {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .lang-dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: rgba(255,255,255,0.05);
+                margin-top: 8px;
+                max-height: 0;
+                padding: 0 8px;
+                overflow: hidden;
+                transition: max-height 0.3s ease, padding 0.3s ease;
+            }
+
+            .lang-switcher.open .lang-dropdown {
+                max-height: 500px;
+                padding: 8px;
+            }
+
+            .lang-option {
+                color: rgba(255,255,255,0.85);
+            }
+
+            .lang-option:hover {
+                color: var(--gold);
+                background: rgba(200, 160, 69, 0.15);
+            }
+        }
+
         /* Mobile Menu */
         .menu-toggle {
             display: none;
@@ -1518,6 +1658,23 @@
                 display: flex;
             }
 
+            .header .container {
+                height: 64px;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text .ar {
+                font-size: 0.95rem;
+            }
+
+            .logo-text .en {
+                font-size: 0.55rem;
+            }
+
             .nav {
                 position: fixed;
                 top: 0;
@@ -1526,10 +1683,11 @@
                 height: 100vh;
                 background: var(--black);
                 flex-direction: column;
-                padding: 100px 30px 30px;
+                padding: 90px 24px 24px;
                 gap: 4px;
                 transition: var(--transition);
                 box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+                overflow-y: auto;
             }
 
             .nav.active {
@@ -1540,6 +1698,66 @@
                 width: 100%;
                 padding: 12px 16px;
                 font-size: 1rem;
+            }
+
+            /* Mobile Hero Optimizations */
+            .hero {
+                min-height: auto;
+                padding: 100px 0 60px;
+            }
+
+            .hero .container {
+                padding-top: 0;
+            }
+
+            .hero-decoration,
+            .hero-decoration-right {
+                display: none;
+            }
+
+            .hero-badge {
+                margin-bottom: 20px;
+                padding: 6px 18px;
+                font-size: 0.75rem;
+            }
+
+            .hero-badge span {
+                font-size: 0.78rem;
+            }
+
+            .hero h1 {
+                font-size: 1.85rem;
+                margin-bottom: 14px;
+                line-height: 1.45;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+                margin-bottom: 28px;
+                line-height: 1.7;
+            }
+
+            .hero-buttons {
+                gap: 10px;
+            }
+
+            .hero-buttons .btn {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+
+            .hero-stats {
+                gap: 24px;
+                margin-top: 40px;
+                padding-top: 28px;
+            }
+
+            .hero-stat .number {
+                font-size: 1.5rem;
+            }
+
+            .hero-stat .label {
+                font-size: 0.75rem;
             }
 
             .about-grid {
@@ -1606,12 +1824,50 @@
 
         @media (max-width: 480px) {
             .hero-stats {
-                flex-direction: column;
-                gap: 20px;
+                flex-direction: row;
+                justify-content: space-around;
+                gap: 12px;
+                margin-top: 32px;
+                padding-top: 22px;
+            }
+
+            .hero-stat .number {
+                font-size: 1.3rem;
+            }
+
+            .hero-stat .label {
+                font-size: 0.7rem;
             }
 
             .hero h1 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
+                line-height: 1.4;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .section-desc {
+                font-size: 0.95rem;
             }
 
             .whatsapp-float {
@@ -1624,6 +1880,13 @@
 
             .whatsapp-float::before {
                 display: none;
+            }
+
+            .scroll-top {
+                bottom: 20px;
+                right: 20px;
+                width: 42px;
+                height: 42px;
             }
         }
     </style>
@@ -1642,13 +1905,33 @@
             </a>
 
             <nav class="nav" id="nav">
-                <a href="#home" class="active">الرئيسية</a>
-                <a href="#about">عن الشركة</a>
-                <a href="#services">خدماتنا</a>
-                <a href="#why-us">لماذا نحن</a>
-                <a href="#gallery">معرض الصور</a>
-                <a href="#licenses">التراخيص</a>
-                <a href="#contact" class="nav-cta">تواصل معنا</a>
+                <a href="#home" class="active" data-i18n="nav.home">الرئيسية</a>
+                <a href="#about" data-i18n="nav.about">عن الشركة</a>
+                <a href="#services" data-i18n="nav.services">خدماتنا</a>
+                <a href="#why-us" data-i18n="nav.why">لماذا نحن</a>
+                <a href="#gallery" data-i18n="nav.gallery">معرض الصور</a>
+                <a href="#licenses" data-i18n="nav.licenses">التراخيص</a>
+                <a href="#contact" class="nav-cta" data-i18n="nav.contact">تواصل معنا</a>
+
+                <div class="lang-switcher" id="langSwitcher">
+                    <button class="lang-current" id="langCurrent" aria-label="Language">
+                        <span class="flag">🌐</span>
+                        <span class="lang-current-name">العربية</span>
+                        <i class="fas fa-chevron-down chevron"></i>
+                    </button>
+                    <div class="lang-dropdown" id="langDropdown">
+                        <a class="lang-option active" data-lang="ar"><span class="flag">🇸🇦</span><span class="name">العربية</span></a>
+                        <a class="lang-option" data-lang="en"><span class="flag">🇬🇧</span><span class="name">English</span></a>
+                        <a class="lang-option" data-lang="tr"><span class="flag">🇹🇷</span><span class="name">Türkçe</span></a>
+                        <a class="lang-option" data-lang="id"><span class="flag">🇮🇩</span><span class="name">Indonesia</span></a>
+                        <a class="lang-option" data-lang="ms"><span class="flag">🇲🇾</span><span class="name">Melayu</span></a>
+                        <a class="lang-option" data-lang="ur"><span class="flag">🇵🇰</span><span class="name">اردو</span></a>
+                        <a class="lang-option" data-lang="fa"><span class="flag">🇮🇷</span><span class="name">فارسی</span></a>
+                        <a class="lang-option" data-lang="fr"><span class="flag">🇫🇷</span><span class="name">Français</span></a>
+                        <a class="lang-option" data-lang="hi"><span class="flag">🇮🇳</span><span class="name">हिन्दी</span></a>
+                        <a class="lang-option" data-lang="uz"><span class="flag">🇺🇿</span><span class="name">Oʻzbek</span></a>
+                    </div>
+                </div>
             </nav>
 
             <div class="menu-toggle" id="menuToggle">
@@ -1667,37 +1950,37 @@
         <div class="container">
             <div class="hero-badge">
                 <i class="fas fa-star"></i>
-                <span>شريكك الموثوق لرحلة العمرة</span>
+                <span data-i18n="hero.badge">شريكك الموثوق لرحلة العمرة</span>
             </div>
-            <h1>
+            <h1 data-i18n-html="hero.title">
                 رحلة عمرة <span class="gold">لا تُنسى</span><br>
                 تبدأ من هنا
             </h1>
-            <p class="hero-subtitle">
+            <p class="hero-subtitle" data-i18n="hero.subtitle">
                 نقدم لكم خدمات عمرة متكاملة بأعلى معايير الجودة والراحة، من حجز الفنادق الفاخرة إلى النقل المريح والإرشاد المتخصص
             </p>
             <div class="hero-buttons">
                 <a href="#" data-wa-message="booking" target="_blank" class="btn btn-primary wa-link">
                     <i class="fab fa-whatsapp"></i>
-                    احجز عمرتك الآن
+                    <span data-i18n="hero.cta1">احجز عمرتك الآن</span>
                 </a>
                 <a href="#services" class="btn btn-outline">
                     <i class="fas fa-arrow-down"></i>
-                    تعرف على خدماتنا
+                    <span data-i18n="hero.cta2">تعرف على خدماتنا</span>
                 </a>
             </div>
             <div class="hero-stats">
                 <div class="hero-stat">
                     <div class="number">+٥٠,٠٠٠</div>
-                    <div class="label">تأشيرة عمرة</div>
+                    <div class="label" data-i18n="hero.stat1">تأشيرة عمرة</div>
                 </div>
                 <div class="hero-stat">
                     <div class="number">+١٥</div>
-                    <div class="label">سنة خبرة</div>
+                    <div class="label" data-i18n="hero.stat2">سنة خبرة</div>
                 </div>
                 <div class="hero-stat">
                     <div class="number">٢٤/٧</div>
-                    <div class="label">دعم متواصل</div>
+                    <div class="label" data-i18n="hero.stat3">دعم متواصل</div>
                 </div>
             </div>
         </div>
@@ -1710,36 +1993,36 @@
                 <div class="about-image animate-on-scroll">
                     <img src="images/background2.jpg" alt="مناسك الزوار" loading="lazy" decoding="async">
                     <div class="about-image-overlay">
-                        <span>عمرة &bull; فنادق &bull; نقل</span>
+                        <span data-i18n="about.tagline">عمرة &bull; فنادق &bull; نقل</span>
                     </div>
                 </div>
                 <div class="about-content animate-on-scroll">
                     <div class="section-label">
-                        <span>من نحن</span>
+                        <span data-i18n="about.label">من نحن</span>
                     </div>
-                    <h3>مناسك الزوار لخدمات <span>المعتمرين</span></h3>
-                    <p>
+                    <h3 data-i18n-html="about.title">مناسك الزوار لخدمات <span>المعتمرين</span></h3>
+                    <p data-i18n="about.p1">
                         نحن شركة سعودية متخصصة في تقديم خدمات العمرة المتكاملة. نسعى لتوفير تجربة روحانية مريحة ومميزة لكل معتمر، من لحظة وصوله إلى المملكة العربية السعودية وحتى مغادرته.
                     </p>
-                    <p>
+                    <p data-i18n="about.p2">
                         نؤمن بأن رحلة العمرة يجب أن تكون خالية من التعقيدات، لذلك نتولى جميع الترتيبات اللوجستية لتتفرغ أنت للعبادة والخشوع.
                     </p>
                     <div class="about-features">
                         <div class="about-feature">
                             <i class="fas fa-check-circle"></i>
-                            <span>خدمات متكاملة</span>
+                            <span data-i18n="about.f1">خدمات متكاملة</span>
                         </div>
                         <div class="about-feature">
                             <i class="fas fa-check-circle"></i>
-                            <span>فريق متخصص</span>
+                            <span data-i18n="about.f2">فريق متخصص</span>
                         </div>
                         <div class="about-feature">
                             <i class="fas fa-check-circle"></i>
-                            <span>أسعار تنافسية</span>
+                            <span data-i18n="about.f3">أسعار تنافسية</span>
                         </div>
                         <div class="about-feature">
                             <i class="fas fa-check-circle"></i>
-                            <span>رضا العملاء</span>
+                            <span data-i18n="about.f4">رضا العملاء</span>
                         </div>
                     </div>
                 </div>
@@ -1752,10 +2035,10 @@
         <div class="container">
             <div class="section-header animate-on-scroll">
                 <div class="section-label">
-                    <span>خدماتنا</span>
+                    <span data-i18n="services.label">خدماتنا</span>
                 </div>
-                <h2 class="section-title">خدمات عمرة شاملة ومتكاملة</h2>
-                <p class="section-desc">
+                <h2 class="section-title" data-i18n="services.title">خدمات عمرة شاملة ومتكاملة</h2>
+                <p class="section-desc" data-i18n="services.desc">
                     نوفر لكم باقة متنوعة من الخدمات المصممة لتلبية جميع احتياجاتكم خلال رحلة العمرة
                 </p>
             </div>
@@ -1764,43 +2047,43 @@
                     <div class="service-icon">
                         <i class="fas fa-kaaba"></i>
                     </div>
-                    <h3>تنظيم رحلات العمرة</h3>
-                    <p>تنظيم شامل لرحلات العمرة مع برامج متنوعة تناسب جميع الميزانيات، مع ضمان أفضل تجربة روحانية</p>
+                    <h3 data-i18n="services.s1.title">تنظيم رحلات العمرة</h3>
+                    <p data-i18n="services.s1.desc">تنظيم شامل لرحلات العمرة مع برامج متنوعة تناسب جميع الميزانيات، مع ضمان أفضل تجربة روحانية</p>
                 </div>
                 <div class="service-card animate-on-scroll">
                     <div class="service-icon">
                         <i class="fas fa-hotel"></i>
                     </div>
-                    <h3>حجوزات الفنادق</h3>
-                    <p>حجوزات في أفخم الفنادق القريبة من الحرم المكي والمسجد النبوي بأسعار تنافسية ومميزة</p>
+                    <h3 data-i18n="services.s2.title">حجوزات الفنادق</h3>
+                    <p data-i18n="services.s2.desc">حجوزات في أفخم الفنادق القريبة من الحرم المكي والمسجد النبوي بأسعار تنافسية ومميزة</p>
                 </div>
                 <div class="service-card animate-on-scroll">
                     <div class="service-icon">
                         <i class="fas fa-bus"></i>
                     </div>
-                    <h3>خدمات النقل</h3>
-                    <p>أسطول من المركبات الحديثة والمكيفة للتنقل بين المدن المقدسة وداخلها بكل راحة وأمان</p>
+                    <h3 data-i18n="services.s3.title">خدمات النقل</h3>
+                    <p data-i18n="services.s3.desc">أسطول من المركبات الحديثة والمكيفة للتنقل بين المدن المقدسة وداخلها بكل راحة وأمان</p>
                 </div>
                 <div class="service-card animate-on-scroll">
                     <div class="service-icon">
                         <i class="fas fa-user-tie"></i>
                     </div>
-                    <h3>مرشدين متخصصين</h3>
-                    <p>مرشدين دينيين وسياحيين ذوي خبرة عالية يرافقونكم طوال الرحلة ويقدمون الإرشاد اللازم</p>
+                    <h3 data-i18n="services.s4.title">مرشدين متخصصين</h3>
+                    <p data-i18n="services.s4.desc">مرشدين دينيين وسياحيين ذوي خبرة عالية يرافقونكم طوال الرحلة ويقدمون الإرشاد اللازم</p>
                 </div>
                 <div class="service-card animate-on-scroll">
                     <div class="service-icon">
                         <i class="fas fa-headset"></i>
                     </div>
-                    <h3>دعم على مدار الساعة</h3>
-                    <p>فريق دعم متاح على مدار الساعة للرد على استفساراتكم وتلبية احتياجاتكم في أي وقت</p>
+                    <h3 data-i18n="services.s5.title">دعم على مدار الساعة</h3>
+                    <p data-i18n="services.s5.desc">فريق دعم متاح على مدار الساعة للرد على استفساراتكم وتلبية احتياجاتكم في أي وقت</p>
                 </div>
                 <div class="service-card animate-on-scroll">
                     <div class="service-icon">
                         <i class="fas fa-utensils"></i>
                     </div>
-                    <h3>وجبات وضيافة</h3>
-                    <p>تقديم وجبات متنوعة وعالية الجودة تراعي مختلف الأذواق مع خدمة ضيافة متميزة</p>
+                    <h3 data-i18n="services.s6.title">وجبات وضيافة</h3>
+                    <p data-i18n="services.s6.desc">تقديم وجبات متنوعة وعالية الجودة تراعي مختلف الأذواق مع خدمة ضيافة متميزة</p>
                 </div>
             </div>
         </div>
@@ -1811,10 +2094,10 @@
         <div class="container">
             <div class="section-header animate-on-scroll">
                 <div class="section-label">
-                    <span>لماذا نحن</span>
+                    <span data-i18n="why.label">لماذا نحن</span>
                 </div>
-                <h2 class="section-title">لماذا تختار مناسك الزوار؟</h2>
-                <p class="section-desc">
+                <h2 class="section-title" data-i18n="why.title">لماذا تختار مناسك الزوار؟</h2>
+                <p class="section-desc" data-i18n="why.desc">
                     نتميز بتقديم خدمات استثنائية تجعل رحلة عمرتك تجربة لا تُنسى
                 </p>
             </div>
@@ -1823,43 +2106,43 @@
                     <div class="why-icon">
                         <i class="fas fa-award"></i>
                     </div>
-                    <h3>خبرة واسعة</h3>
-                    <p>أكثر من ١٥ عامًا من الخبرة في تنظيم رحلات العمرة وخدمة آلاف المعتمرين</p>
+                    <h3 data-i18n="why.w1.title">خبرة واسعة</h3>
+                    <p data-i18n="why.w1.desc">أكثر من ١٥ عامًا من الخبرة في تنظيم رحلات العمرة وخدمة آلاف المعتمرين</p>
                 </div>
                 <div class="why-card animate-on-scroll">
                     <div class="why-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3>فريق متخصص</h3>
-                    <p>فريق عمل مؤهل ومدرب على أعلى مستوى لتقديم أفضل خدمة ممكنة</p>
+                    <h3 data-i18n="why.w2.title">فريق متخصص</h3>
+                    <p data-i18n="why.w2.desc">فريق عمل مؤهل ومدرب على أعلى مستوى لتقديم أفضل خدمة ممكنة</p>
                 </div>
                 <div class="why-card animate-on-scroll">
                     <div class="why-icon">
                         <i class="fas fa-gem"></i>
                     </div>
-                    <h3>جودة عالية</h3>
-                    <p>نلتزم بأعلى معايير الجودة في جميع خدماتنا من الإقامة إلى النقل والإرشاد</p>
+                    <h3 data-i18n="why.w3.title">جودة عالية</h3>
+                    <p data-i18n="why.w3.desc">نلتزم بأعلى معايير الجودة في جميع خدماتنا من الإقامة إلى النقل والإرشاد</p>
                 </div>
                 <div class="why-card animate-on-scroll">
                     <div class="why-icon">
                         <i class="fas fa-hand-holding-heart"></i>
                     </div>
-                    <h3>رعاية شاملة</h3>
-                    <p>رعاية متكاملة منذ لحظة الوصول وحتى المغادرة مع اهتمام بأدق التفاصيل</p>
+                    <h3 data-i18n="why.w4.title">رعاية شاملة</h3>
+                    <p data-i18n="why.w4.desc">رعاية متكاملة منذ لحظة الوصول وحتى المغادرة مع اهتمام بأدق التفاصيل</p>
                 </div>
                 <div class="why-card animate-on-scroll">
                     <div class="why-icon">
                         <i class="fas fa-tags"></i>
                     </div>
-                    <h3>أسعار منافسة</h3>
-                    <p>باقات متنوعة بأسعار تنافسية تناسب مختلف الميزانيات دون التنازل عن الجودة</p>
+                    <h3 data-i18n="why.w5.title">أسعار منافسة</h3>
+                    <p data-i18n="why.w5.desc">باقات متنوعة بأسعار تنافسية تناسب مختلف الميزانيات دون التنازل عن الجودة</p>
                 </div>
                 <div class="why-card animate-on-scroll">
                     <div class="why-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3>موثوقية وأمان</h3>
-                    <p>شركة مرخصة ومعتمدة تضمن لكم رحلة آمنة وموثوقة بكل المقاييس</p>
+                    <h3 data-i18n="why.w6.title">موثوقية وأمان</h3>
+                    <p data-i18n="why.w6.desc">شركة مرخصة ومعتمدة تضمن لكم رحلة آمنة وموثوقة بكل المقاييس</p>
                 </div>
             </div>
         </div>
@@ -1870,10 +2153,10 @@
         <div class="container">
             <div class="section-header animate-on-scroll">
                 <div class="section-label">
-                    <span>فعالياتنا ومشاركاتنا</span>
+                    <span data-i18n="gallery.label">فعالياتنا ومشاركاتنا</span>
                 </div>
-                <h2 class="section-title">حضورنا في المعارض والفعاليات</h2>
-                <p class="section-desc">
+                <h2 class="section-title" data-i18n="gallery.title">حضورنا في المعارض والفعاليات</h2>
+                <p class="section-desc" data-i18n="gallery.desc">
                     نشارك في أهم الفعاليات والمعارض المتعلقة بقطاع الحج والعمرة، ونلتقي بأبرز الشخصيات والشركاء
                 </p>
             </div>
@@ -1951,7 +2234,7 @@
             <div class="gallery-load-more">
                 <button class="btn-load-more" id="loadMoreGallery">
                     <i class="fas fa-images"></i>
-                    عرض المزيد من الصور
+                    <span data-i18n="gallery.more">عرض المزيد من الصور</span>
                 </button>
             </div>
         </div>
@@ -1962,10 +2245,10 @@
         <div class="container">
             <div class="section-header animate-on-scroll">
                 <div class="section-label">
-                    <span>التراخيص والاعتمادات</span>
+                    <span data-i18n="licenses.label">التراخيص والاعتمادات</span>
                 </div>
-                <h2 class="section-title">شركة مرخصة ومعتمدة</h2>
-                <p class="section-desc">
+                <h2 class="section-title" data-i18n="licenses.title">شركة مرخصة ومعتمدة</h2>
+                <p class="section-desc" data-i18n="licenses.desc">
                     نعمل وفق التراخيص الرسمية المعتمدة من الجهات المختصة في المملكة العربية السعودية
                 </p>
             </div>
@@ -1987,8 +2270,8 @@
                         </div>
                     </div>
                     <div class="license-info">
-                        <h4>رخصة العمرة والحج</h4>
-                        <p>معتمدة من وزارة الحج والعمرة</p>
+                        <h4 data-i18n="licenses.l1.title">رخصة العمرة والحج</h4>
+                        <p data-i18n="licenses.l1.desc">معتمدة من وزارة الحج والعمرة</p>
                     </div>
                 </div>
 
@@ -2009,8 +2292,8 @@
                         </div>
                     </div>
                     <div class="license-info">
-                        <h4>السجل التجاري</h4>
-                        <p>سجل تجاري ساري وموثق رسميًا</p>
+                        <h4 data-i18n="licenses.l2.title">السجل التجاري</h4>
+                        <p data-i18n="licenses.l2.desc">سجل تجاري ساري وموثق رسميًا</p>
                     </div>
                 </div>
             </div>
@@ -2028,16 +2311,16 @@
     <!-- ===== CTA ===== -->
     <section class="cta-section">
         <div class="container animate-on-scroll">
-            <h2>جاهز لرحلة عمرة لا تُنسى؟</h2>
-            <p>تواصل معنا الآن واحجز رحلتك القادمة مع مناسك الزوار</p>
+            <h2 data-i18n="cta.title">جاهز لرحلة عمرة لا تُنسى؟</h2>
+            <p data-i18n="cta.desc">تواصل معنا الآن واحجز رحلتك القادمة مع مناسك الزوار</p>
             <div class="cta-buttons">
                 <a href="#" data-wa-message="cta" target="_blank" class="btn btn-white wa-link">
                     <i class="fab fa-whatsapp"></i>
-                    تواصل عبر واتساب
+                    <span data-i18n="cta.btn1">تواصل عبر واتساب</span>
                 </a>
                 <a href="tel:+966504993272" class="btn btn-dark">
                     <i class="fas fa-phone-alt"></i>
-                    اتصل بنا
+                    <span data-i18n="cta.btn2">اتصل بنا</span>
                 </a>
             </div>
         </div>
@@ -2048,24 +2331,24 @@
         <div class="container">
             <div class="section-header animate-on-scroll">
                 <div class="section-label">
-                    <span>تواصل معنا</span>
+                    <span data-i18n="contact.label">تواصل معنا</span>
                 </div>
-                <h2 class="section-title">نسعد بتواصلكم معنا</h2>
-                <p class="section-desc">
+                <h2 class="section-title" data-i18n="contact.title">نسعد بتواصلكم معنا</h2>
+                <p class="section-desc" data-i18n="contact.desc">
                     لا تتردد في التواصل معنا للاستفسار أو حجز رحلة عمرتك القادمة
                 </p>
             </div>
             <div class="contact-grid">
                 <div class="contact-info animate-on-scroll">
-                    <h3>معلومات التواصل</h3>
-                    <p>يسعدنا تواصلكم معنا عبر أي من القنوات التالية. فريقنا جاهز للرد على جميع استفساراتكم.</p>
+                    <h3 data-i18n="contact.info">معلومات التواصل</h3>
+                    <p data-i18n="contact.intro">يسعدنا تواصلكم معنا عبر أي من القنوات التالية. فريقنا جاهز للرد على جميع استفساراتكم.</p>
 
                     <a href="tel:+966504993272" class="contact-item">
                         <div class="contact-item-icon">
                             <i class="fas fa-phone-alt"></i>
                         </div>
                         <div class="contact-item-text">
-                            <div class="label">رقم الهاتف</div>
+                            <div class="label" data-i18n="contact.phone">رقم الهاتف</div>
                             <div class="value">+966 50 499 3272</div>
                         </div>
                     </a>
@@ -2075,7 +2358,7 @@
                             <i class="fab fa-whatsapp"></i>
                         </div>
                         <div class="contact-item-text">
-                            <div class="label">واتساب</div>
+                            <div class="label" data-i18n="contact.whatsapp">واتساب</div>
                             <div class="value">+966 50 499 3272</div>
                         </div>
                     </a>
@@ -2085,8 +2368,8 @@
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="contact-item-text">
-                            <div class="label">الموقع</div>
-                            <div class="value" style="direction:rtl;font-size:0.95rem">برج السلوى، الطابق ٨، الرصيفة، مكة المكرمة ٢٤٢٣٢</div>
+                            <div class="label" data-i18n="contact.location">الموقع</div>
+                            <div class="value" style="font-size:0.95rem" data-i18n="contact.address">برج السلوى، الطابق ٨، الرصيفة، مكة المكرمة ٢٤٢٣٢</div>
                         </div>
                     </a>
 
@@ -2095,8 +2378,8 @@
                             <i class="fas fa-clock"></i>
                         </div>
                         <div class="contact-item-text">
-                            <div class="label">ساعات العمل</div>
-                            <div class="value" style="direction:rtl">٢٤ ساعة / ٧ أيام</div>
+                            <div class="label" data-i18n="contact.hours">ساعات العمل</div>
+                            <div class="value" data-i18n="contact.hours_value">٢٤ ساعة / ٧ أيام</div>
                         </div>
                     </div>
                 </div>
@@ -2104,7 +2387,7 @@
                 <div class="map-wrapper animate-on-scroll" id="mapWrapper">
                     <div class="map-placeholder" id="mapPlaceholder">
                         <i class="fas fa-map-marked-alt"></i>
-                        <p>اضغط لعرض الخريطة</p>
+                        <p data-i18n="contact.map_load">اضغط لعرض الخريطة</p>
                     </div>
                     <iframe
                         id="mapIframe"
@@ -2117,8 +2400,8 @@
                     <a href="https://maps.app.goo.gl/sR3StfCchPCw8afD8" target="_blank" rel="noopener" class="map-overlay">
                         <i class="fas fa-map-marker-alt"></i>
                         <div class="map-overlay-text">
-                            <div class="label">موقعنا</div>
-                            <div class="value">برج السلوى - الطابق ٨ - مكة المكرمة</div>
+                            <div class="label" data-i18n="contact.our_location">موقعنا</div>
+                            <div class="value" data-i18n="contact.short_address">برج السلوى - الطابق ٨ - مكة المكرمة</div>
                         </div>
                     </a>
                 </div>
@@ -2138,7 +2421,7 @@
                             <span class="en">Manasik Visitors</span>
                         </div>
                     </a>
-                    <p>شركة مناسك الزوار لخدمات المعتمرين - شريكك الموثوق لرحلة عمرة مريحة ومميزة في المملكة العربية السعودية.</p>
+                    <p data-i18n="footer.brand">شركة مناسك الزوار لخدمات المعتمرين - شريكك الموثوق لرحلة عمرة مريحة ومميزة في المملكة العربية السعودية.</p>
                     <div class="footer-social">
                         <a href="#" aria-label="تويتر"><i class="fab fa-x-twitter"></i></a>
                         <a href="#" aria-label="انستغرام"><i class="fab fa-instagram"></i></a>
@@ -2148,29 +2431,29 @@
                 </div>
 
                 <div>
-                    <h4>روابط سريعة</h4>
+                    <h4 data-i18n="footer.quicklinks">روابط سريعة</h4>
                     <ul class="footer-links">
-                        <li><a href="#home"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
-                        <li><a href="#about"><i class="fas fa-chevron-left"></i> عن الشركة</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-left"></i> خدماتنا</a></li>
-                        <li><a href="#why-us"><i class="fas fa-chevron-left"></i> لماذا نحن</a></li>
-                        <li><a href="#contact"><i class="fas fa-chevron-left"></i> تواصل معنا</a></li>
+                        <li><a href="#home"><i class="fas fa-chevron-left"></i> <span data-i18n="nav.home">الرئيسية</span></a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-left"></i> <span data-i18n="nav.about">عن الشركة</span></a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-left"></i> <span data-i18n="nav.services">خدماتنا</span></a></li>
+                        <li><a href="#why-us"><i class="fas fa-chevron-left"></i> <span data-i18n="nav.why">لماذا نحن</span></a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-left"></i> <span data-i18n="nav.contact">تواصل معنا</span></a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4>خدماتنا</h4>
+                    <h4 data-i18n="footer.services_title">خدماتنا</h4>
                     <ul class="footer-links">
-                        <li><a href="#services"><i class="fas fa-chevron-left"></i> رحلات العمرة</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-left"></i> حجز الفنادق</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-left"></i> خدمات النقل</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-left"></i> المرشدين</a></li>
-                        <li><a href="#services"><i class="fas fa-chevron-left"></i> الدعم الفني</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-left"></i> <span data-i18n="footer.s1">رحلات العمرة</span></a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-left"></i> <span data-i18n="footer.s2">حجز الفنادق</span></a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-left"></i> <span data-i18n="footer.s3">خدمات النقل</span></a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-left"></i> <span data-i18n="footer.s4">المرشدين</span></a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-left"></i> <span data-i18n="footer.s5">الدعم الفني</span></a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4>تواصل معنا</h4>
+                    <h4 data-i18n="footer.contact_title">تواصل معنا</h4>
                     <div class="footer-contact-item">
                         <i class="fas fa-phone-alt"></i>
                         <span style="direction:ltr;display:inline-block">+966 50 499 3272</span>
@@ -2181,17 +2464,17 @@
                     </div>
                     <div class="footer-contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>برج السلوى - الطابق ٨ - مكة المكرمة</span>
+                        <span data-i18n="contact.short_address">برج السلوى - الطابق ٨ - مكة المكرمة</span>
                     </div>
                     <div class="footer-contact-item">
                         <i class="fas fa-clock"></i>
-                        <span>متاح ٢٤ ساعة / ٧ أيام</span>
+                        <span data-i18n="footer.hours">متاح ٢٤ ساعة / ٧ أيام</span>
                     </div>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>جميع الحقوق محفوظة &copy; ٢٠٢٦ <span>مناسك الزوار لخدمات المعتمرين</span></p>
+                <p data-i18n-html="footer.copyright">جميع الحقوق محفوظة &copy; ٢٠٢٦ <span>مناسك الزوار لخدمات المعتمرين</span></p>
             </div>
         </div>
     </footer>
@@ -2207,6 +2490,983 @@
     </button>
 
     <script>
+        // ===== Translation Dictionary =====
+        const TRANSLATIONS = {
+            ar: {
+                "nav.home": "الرئيسية",
+                "nav.about": "عن الشركة",
+                "nav.services": "خدماتنا",
+                "nav.why": "لماذا نحن",
+                "nav.gallery": "معرض الصور",
+                "nav.licenses": "التراخيص",
+                "nav.contact": "تواصل معنا",
+                "hero.badge": "شريكك الموثوق لرحلة العمرة",
+                "hero.title": 'رحلة عمرة <span class="gold">لا تُنسى</span><br>تبدأ من هنا',
+                "hero.subtitle": "نقدم لكم خدمات عمرة متكاملة بأعلى معايير الجودة والراحة، من حجز الفنادق الفاخرة إلى النقل المريح والإرشاد المتخصص",
+                "hero.cta1": "احجز عمرتك الآن",
+                "hero.cta2": "تعرف على خدماتنا",
+                "hero.stat1": "تأشيرة عمرة",
+                "hero.stat2": "سنة خبرة",
+                "hero.stat3": "دعم متواصل",
+                "about.label": "من نحن",
+                "about.title": 'مناسك الزوار لخدمات <span>المعتمرين</span>',
+                "about.p1": "نحن شركة سعودية متخصصة في تقديم خدمات العمرة المتكاملة. نسعى لتوفير تجربة روحانية مريحة ومميزة لكل معتمر، من لحظة وصوله إلى المملكة العربية السعودية وحتى مغادرته.",
+                "about.p2": "نؤمن بأن رحلة العمرة يجب أن تكون خالية من التعقيدات، لذلك نتولى جميع الترتيبات اللوجستية لتتفرغ أنت للعبادة والخشوع.",
+                "about.f1": "خدمات متكاملة",
+                "about.f2": "فريق متخصص",
+                "about.f3": "أسعار تنافسية",
+                "about.f4": "رضا العملاء",
+                "about.tagline": "عمرة • فنادق • نقل",
+                "services.label": "خدماتنا",
+                "services.title": "خدمات عمرة شاملة ومتكاملة",
+                "services.desc": "نوفر لكم باقة متنوعة من الخدمات المصممة لتلبية جميع احتياجاتكم خلال رحلة العمرة",
+                "services.s1.title": "تنظيم رحلات العمرة",
+                "services.s1.desc": "تنظيم شامل لرحلات العمرة مع برامج متنوعة تناسب جميع الميزانيات، مع ضمان أفضل تجربة روحانية",
+                "services.s2.title": "حجوزات الفنادق",
+                "services.s2.desc": "حجوزات في أفخم الفنادق القريبة من الحرم المكي والمسجد النبوي بأسعار تنافسية ومميزة",
+                "services.s3.title": "خدمات النقل",
+                "services.s3.desc": "أسطول من المركبات الحديثة والمكيفة للتنقل بين المدن المقدسة وداخلها بكل راحة وأمان",
+                "services.s4.title": "مرشدين متخصصين",
+                "services.s4.desc": "مرشدين دينيين وسياحيين ذوي خبرة عالية يرافقونكم طوال الرحلة ويقدمون الإرشاد اللازم",
+                "services.s5.title": "دعم على مدار الساعة",
+                "services.s5.desc": "فريق دعم متاح على مدار الساعة للرد على استفساراتكم وتلبية احتياجاتكم في أي وقت",
+                "services.s6.title": "وجبات وضيافة",
+                "services.s6.desc": "تقديم وجبات متنوعة وعالية الجودة تراعي مختلف الأذواق مع خدمة ضيافة متميزة",
+                "why.label": "لماذا نحن",
+                "why.title": "لماذا تختار مناسك الزوار؟",
+                "why.desc": "نتميز بتقديم خدمات استثنائية تجعل رحلة عمرتك تجربة لا تُنسى",
+                "why.w1.title": "خبرة واسعة",
+                "why.w1.desc": "أكثر من ١٥ عامًا من الخبرة في تنظيم رحلات العمرة وخدمة آلاف المعتمرين",
+                "why.w2.title": "فريق متخصص",
+                "why.w2.desc": "فريق عمل مؤهل ومدرب على أعلى مستوى لتقديم أفضل خدمة ممكنة",
+                "why.w3.title": "جودة عالية",
+                "why.w3.desc": "نلتزم بأعلى معايير الجودة في جميع خدماتنا من الإقامة إلى النقل والإرشاد",
+                "why.w4.title": "رعاية شاملة",
+                "why.w4.desc": "رعاية متكاملة منذ لحظة الوصول وحتى المغادرة مع اهتمام بأدق التفاصيل",
+                "why.w5.title": "أسعار منافسة",
+                "why.w5.desc": "باقات متنوعة بأسعار تنافسية تناسب مختلف الميزانيات دون التنازل عن الجودة",
+                "why.w6.title": "موثوقية وأمان",
+                "why.w6.desc": "شركة مرخصة ومعتمدة تضمن لكم رحلة آمنة وموثوقة بكل المقاييس",
+                "gallery.label": "فعالياتنا ومشاركاتنا",
+                "gallery.title": "حضورنا في المعارض والفعاليات",
+                "gallery.desc": "نشارك في أهم الفعاليات والمعارض المتعلقة بقطاع الحج والعمرة، ونلتقي بأبرز الشخصيات والشركاء",
+                "gallery.more": "عرض المزيد من الصور",
+                "licenses.label": "التراخيص والاعتمادات",
+                "licenses.title": "شركة مرخصة ومعتمدة",
+                "licenses.desc": "نعمل وفق التراخيص الرسمية المعتمدة من الجهات المختصة في المملكة العربية السعودية",
+                "licenses.l1.title": "رخصة العمرة والحج",
+                "licenses.l1.desc": "معتمدة من وزارة الحج والعمرة",
+                "licenses.l2.title": "السجل التجاري",
+                "licenses.l2.desc": "سجل تجاري ساري وموثق رسميًا",
+                "cta.title": "جاهز لرحلة عمرة لا تُنسى؟",
+                "cta.desc": "تواصل معنا الآن واحجز رحلتك القادمة مع مناسك الزوار",
+                "cta.btn1": "تواصل عبر واتساب",
+                "cta.btn2": "اتصل بنا",
+                "contact.label": "تواصل معنا",
+                "contact.title": "نسعد بتواصلكم معنا",
+                "contact.desc": "لا تتردد في التواصل معنا للاستفسار أو حجز رحلة عمرتك القادمة",
+                "contact.info": "معلومات التواصل",
+                "contact.intro": "يسعدنا تواصلكم معنا عبر أي من القنوات التالية. فريقنا جاهز للرد على جميع استفساراتكم.",
+                "contact.phone": "رقم الهاتف",
+                "contact.whatsapp": "واتساب",
+                "contact.location": "الموقع",
+                "contact.address": "برج السلوى، الطابق ٨، الرصيفة، مكة المكرمة ٢٤٢٣٢",
+                "contact.hours": "ساعات العمل",
+                "contact.hours_value": "٢٤ ساعة / ٧ أيام",
+                "contact.our_location": "موقعنا",
+                "contact.short_address": "برج السلوى - الطابق ٨ - مكة المكرمة",
+                "contact.map_load": "اضغط لعرض الخريطة",
+                "footer.brand": "شركة مناسك الزوار لخدمات المعتمرين - شريكك الموثوق لرحلة عمرة مريحة ومميزة في المملكة العربية السعودية.",
+                "footer.quicklinks": "روابط سريعة",
+                "footer.services_title": "خدماتنا",
+                "footer.contact_title": "تواصل معنا",
+                "footer.s1": "رحلات العمرة",
+                "footer.s2": "حجز الفنادق",
+                "footer.s3": "خدمات النقل",
+                "footer.s4": "المرشدين",
+                "footer.s5": "الدعم الفني",
+                "footer.hours": "متاح ٢٤ ساعة / ٧ أيام",
+                "footer.copyright": 'جميع الحقوق محفوظة &copy; ٢٠٢٦ <span>مناسك الزوار لخدمات المعتمرين</span>'
+            },
+            en: {
+                "nav.home": "Home",
+                "nav.about": "About",
+                "nav.services": "Services",
+                "nav.why": "Why Us",
+                "nav.gallery": "Gallery",
+                "nav.licenses": "Licenses",
+                "nav.contact": "Contact",
+                "hero.badge": "Your trusted partner for Umrah",
+                "hero.title": 'An <span class="gold">unforgettable</span><br>Umrah journey begins here',
+                "hero.subtitle": "We provide comprehensive Umrah services with the highest standards of quality and comfort — from luxury hotel bookings to comfortable transport and expert guidance.",
+                "hero.cta1": "Book your Umrah now",
+                "hero.cta2": "Explore our services",
+                "hero.stat1": "Umrah visas",
+                "hero.stat2": "Years of experience",
+                "hero.stat3": "Continuous support",
+                "about.label": "About us",
+                "about.title": 'Manasik Visitors for <span>Umrah Services</span>',
+                "about.p1": "We are a Saudi company specialized in providing comprehensive Umrah services. We strive to offer a comfortable and meaningful spiritual experience for every pilgrim, from the moment of arrival in Saudi Arabia until departure.",
+                "about.p2": "We believe an Umrah journey should be free of complications, so we handle all the logistical arrangements while you focus on worship and reflection.",
+                "about.f1": "Comprehensive services",
+                "about.f2": "Specialized team",
+                "about.f3": "Competitive prices",
+                "about.f4": "Customer satisfaction",
+                "about.tagline": "Umrah • Hotels • Transport",
+                "services.label": "Our services",
+                "services.title": "Comprehensive Umrah services",
+                "services.desc": "A diverse range of services designed to meet all your needs throughout your Umrah journey.",
+                "services.s1.title": "Umrah trip organization",
+                "services.s1.desc": "Full Umrah trip planning with programs for every budget, guaranteeing the best spiritual experience.",
+                "services.s2.title": "Hotel bookings",
+                "services.s2.desc": "Bookings at the finest hotels near the Holy Mosque and the Prophet's Mosque at competitive rates.",
+                "services.s3.title": "Transportation",
+                "services.s3.desc": "A fleet of modern, air-conditioned vehicles for safe, comfortable travel between and within the holy cities.",
+                "services.s4.title": "Specialized guides",
+                "services.s4.desc": "Highly experienced religious and tour guides who accompany you throughout the journey.",
+                "services.s5.title": "24/7 support",
+                "services.s5.desc": "Our support team is available around the clock to answer questions and meet your needs anytime.",
+                "services.s6.title": "Meals & hospitality",
+                "services.s6.desc": "Varied, high-quality meals tailored to different tastes, with first-class hospitality.",
+                "why.label": "Why choose us",
+                "why.title": "Why choose Manasik Visitors?",
+                "why.desc": "We deliver exceptional service that makes your Umrah journey unforgettable.",
+                "why.w1.title": "Wide experience",
+                "why.w1.desc": "Over 15 years of experience organizing Umrah trips and serving thousands of pilgrims.",
+                "why.w2.title": "Specialized team",
+                "why.w2.desc": "A qualified, highly trained team committed to delivering the best service possible.",
+                "why.w3.title": "High quality",
+                "why.w3.desc": "We uphold the highest quality standards across all services — accommodation, transport, and guidance.",
+                "why.w4.title": "Complete care",
+                "why.w4.desc": "Integrated care from arrival to departure, with attention to the smallest details.",
+                "why.w5.title": "Competitive prices",
+                "why.w5.desc": "Diverse packages at competitive prices for every budget — without compromising quality.",
+                "why.w6.title": "Trust & safety",
+                "why.w6.desc": "A licensed, certified company guaranteeing a safe, reliable journey by every measure.",
+                "gallery.label": "Our events",
+                "gallery.title": "Our presence at exhibitions and events",
+                "gallery.desc": "We participate in major events and exhibitions in the Hajj and Umrah sector, meeting prominent figures and partners.",
+                "gallery.more": "Show more photos",
+                "licenses.label": "Licenses & accreditations",
+                "licenses.title": "A licensed, accredited company",
+                "licenses.desc": "We operate under official licenses approved by the relevant authorities in Saudi Arabia.",
+                "licenses.l1.title": "Umrah & Hajj license",
+                "licenses.l1.desc": "Approved by the Ministry of Hajj and Umrah",
+                "licenses.l2.title": "Commercial registration",
+                "licenses.l2.desc": "Valid and officially documented commercial registration",
+                "cta.title": "Ready for an unforgettable Umrah journey?",
+                "cta.desc": "Contact us now and book your next trip with Manasik Visitors.",
+                "cta.btn1": "Chat on WhatsApp",
+                "cta.btn2": "Call us",
+                "contact.label": "Contact us",
+                "contact.title": "We'd love to hear from you",
+                "contact.desc": "Don't hesitate to contact us for any inquiry or to book your next Umrah trip.",
+                "contact.info": "Contact information",
+                "contact.intro": "Reach us through any of the following channels. Our team is ready to answer all your questions.",
+                "contact.phone": "Phone",
+                "contact.whatsapp": "WhatsApp",
+                "contact.location": "Location",
+                "contact.address": "Al Salwa Tower, 8th Floor, Al Rusayfah, Makkah 24232",
+                "contact.hours": "Working hours",
+                "contact.hours_value": "24 hours / 7 days",
+                "contact.our_location": "Our location",
+                "contact.short_address": "Al Salwa Tower - 8th Floor - Makkah",
+                "contact.map_load": "Click to load map",
+                "footer.brand": "Manasik Visitors for Umrah Services — your trusted partner for a comfortable, distinctive Umrah journey in Saudi Arabia.",
+                "footer.quicklinks": "Quick links",
+                "footer.services_title": "Our services",
+                "footer.contact_title": "Contact us",
+                "footer.s1": "Umrah trips",
+                "footer.s2": "Hotel bookings",
+                "footer.s3": "Transportation",
+                "footer.s4": "Guides",
+                "footer.s5": "Customer support",
+                "footer.hours": "Available 24/7",
+                "footer.copyright": 'All rights reserved &copy; 2026 <span>Manasik Visitors for Umrah Services</span>'
+            },
+            tr: {
+                "nav.home": "Ana Sayfa",
+                "nav.about": "Hakkımızda",
+                "nav.services": "Hizmetlerimiz",
+                "nav.why": "Neden Biz",
+                "nav.gallery": "Galeri",
+                "nav.licenses": "Lisanslar",
+                "nav.contact": "İletişim",
+                "hero.badge": "Umre yolculuğunuzun güvenilir ortağı",
+                "hero.title": '<span class="gold">Unutulmaz</span> bir<br>Umre yolculuğu burada başlar',
+                "hero.subtitle": "Lüks otel rezervasyonlarından konforlu ulaşıma ve uzman rehberliğe kadar, en yüksek kalite ve konfor standartlarında kapsamlı Umre hizmetleri sunuyoruz.",
+                "hero.cta1": "Umrenizi şimdi rezerve edin",
+                "hero.cta2": "Hizmetlerimizi keşfedin",
+                "hero.stat1": "Umre vizesi",
+                "hero.stat2": "Yıllık tecrübe",
+                "hero.stat3": "Sürekli destek",
+                "about.label": "Hakkımızda",
+                "about.title": 'Manasik Visitors <span>Umre Hizmetleri</span>',
+                "about.p1": "Kapsamlı Umre hizmetleri sunan uzman bir Suudi şirketiyiz. Her hacının Suudi Arabistan'a varış anından ayrılışına kadar konforlu ve anlamlı bir manevi deneyim yaşamasını sağlamaya çalışıyoruz.",
+                "about.p2": "Umre yolculuğunun karmaşıklıklardan uzak olması gerektiğine inanıyoruz. Bu yüzden tüm lojistik düzenlemeleri biz üstleniyoruz ve siz ibadete odaklanıyorsunuz.",
+                "about.f1": "Kapsamlı hizmetler",
+                "about.f2": "Uzman ekip",
+                "about.f3": "Rekabetçi fiyatlar",
+                "about.f4": "Müşteri memnuniyeti",
+                "about.tagline": "Umre • Otel • Ulaşım",
+                "services.label": "Hizmetlerimiz",
+                "services.title": "Kapsamlı Umre hizmetleri",
+                "services.desc": "Umre yolculuğunuz boyunca tüm ihtiyaçlarınızı karşılamak için tasarlanmış çeşitli hizmetler.",
+                "services.s1.title": "Umre seyahat organizasyonu",
+                "services.s1.desc": "Her bütçeye uygun programlarla tam Umre planlaması, en iyi manevi deneyimi garanti eder.",
+                "services.s2.title": "Otel rezervasyonları",
+                "services.s2.desc": "Mescid-i Haram ve Mescid-i Nebevî yakınındaki en seçkin otellerde uygun fiyatlarla rezervasyon.",
+                "services.s3.title": "Ulaşım hizmetleri",
+                "services.s3.desc": "Kutsal şehirler arasında ve içinde güvenli, konforlu yolculuk için modern, klimalı araç filosu.",
+                "services.s4.title": "Uzman rehberler",
+                "services.s4.desc": "Yolculuk boyunca size eşlik eden, deneyimli dini ve turistik rehberler.",
+                "services.s5.title": "7/24 destek",
+                "services.s5.desc": "Destek ekibimiz, sorularınızı yanıtlamak ve ihtiyaçlarınızı karşılamak için her zaman hazır.",
+                "services.s6.title": "Yemek ve ikram",
+                "services.s6.desc": "Farklı damak zevklerine uygun, çeşitli ve yüksek kaliteli yemekler birinci sınıf ikramla sunulur.",
+                "why.label": "Neden bizi seçin",
+                "why.title": "Neden Manasik Visitors'ı seçmelisiniz?",
+                "why.desc": "Umre yolculuğunuzu unutulmaz kılan istisnai hizmetler sunuyoruz.",
+                "why.w1.title": "Geniş tecrübe",
+                "why.w1.desc": "Umre seyahatleri organizasyonunda 15 yılı aşkın tecrübe ve binlerce hacıya hizmet.",
+                "why.w2.title": "Uzman ekip",
+                "why.w2.desc": "En iyi hizmeti sunmaya kararlı, kalifiye ve eğitimli bir ekip.",
+                "why.w3.title": "Yüksek kalite",
+                "why.w3.desc": "Konaklama, ulaşım ve rehberlik dahil tüm hizmetlerde en yüksek kalite standartlarını koruyoruz.",
+                "why.w4.title": "Kapsamlı bakım",
+                "why.w4.desc": "Varıştan ayrılışa kadar bütünleşik bakım, en küçük detaylara dikkat.",
+                "why.w5.title": "Rekabetçi fiyatlar",
+                "why.w5.desc": "Kaliteden ödün vermeden her bütçeye uygun çeşitli paketler.",
+                "why.w6.title": "Güven ve emniyet",
+                "why.w6.desc": "Lisanslı ve sertifikalı şirketimiz her açıdan güvenli ve güvenilir bir yolculuk garantisi verir.",
+                "gallery.label": "Etkinliklerimiz",
+                "gallery.title": "Fuar ve etkinliklerdeki varlığımız",
+                "gallery.desc": "Hac ve Umre sektörünün önemli etkinlik ve fuarlarına katılıyor, önde gelen kişi ve ortaklarla buluşuyoruz.",
+                "gallery.more": "Daha fazla fotoğraf göster",
+                "licenses.label": "Lisanslar ve akreditasyonlar",
+                "licenses.title": "Lisanslı ve akredite şirket",
+                "licenses.desc": "Suudi Arabistan'daki ilgili makamlarca onaylanmış resmi lisanslarla çalışıyoruz.",
+                "licenses.l1.title": "Umre ve Hac lisansı",
+                "licenses.l1.desc": "Hac ve Umre Bakanlığı tarafından onaylı",
+                "licenses.l2.title": "Ticari sicil",
+                "licenses.l2.desc": "Geçerli ve resmi olarak belgelenmiş ticari sicil",
+                "cta.title": "Unutulmaz bir Umre yolculuğuna hazır mısınız?",
+                "cta.desc": "Şimdi bizimle iletişime geçin ve bir sonraki yolculuğunuzu Manasik Visitors ile rezerve edin.",
+                "cta.btn1": "WhatsApp ile yazışın",
+                "cta.btn2": "Bizi arayın",
+                "contact.label": "Bize ulaşın",
+                "contact.title": "Sizden haber almak isteriz",
+                "contact.desc": "Her türlü soru veya bir sonraki Umre yolculuğunuzu rezerve etmek için bizimle iletişime geçmekten çekinmeyin.",
+                "contact.info": "İletişim bilgileri",
+                "contact.intro": "Aşağıdaki kanallardan herhangi biriyle bize ulaşabilirsiniz. Ekibimiz tüm sorularınızı yanıtlamaya hazır.",
+                "contact.phone": "Telefon",
+                "contact.whatsapp": "WhatsApp",
+                "contact.location": "Konum",
+                "contact.address": "Al Salwa Tower, 8. Kat, Al Rusayfah, Mekke 24232",
+                "contact.hours": "Çalışma saatleri",
+                "contact.hours_value": "24 saat / 7 gün",
+                "contact.our_location": "Konumumuz",
+                "contact.short_address": "Al Salwa Tower - 8. Kat - Mekke",
+                "contact.map_load": "Haritayı yüklemek için tıklayın",
+                "footer.brand": "Manasik Visitors Umre Hizmetleri — Suudi Arabistan'da konforlu ve seçkin bir Umre yolculuğu için güvenilir ortağınız.",
+                "footer.quicklinks": "Hızlı bağlantılar",
+                "footer.services_title": "Hizmetlerimiz",
+                "footer.contact_title": "Bize ulaşın",
+                "footer.s1": "Umre seyahatleri",
+                "footer.s2": "Otel rezervasyonu",
+                "footer.s3": "Ulaşım",
+                "footer.s4": "Rehberler",
+                "footer.s5": "Müşteri desteği",
+                "footer.hours": "7/24 hizmet",
+                "footer.copyright": 'Tüm hakları saklıdır &copy; 2026 <span>Manasik Visitors Umre Hizmetleri</span>'
+            },
+            id: {
+                "nav.home": "Beranda",
+                "nav.about": "Tentang",
+                "nav.services": "Layanan",
+                "nav.why": "Mengapa Kami",
+                "nav.gallery": "Galeri",
+                "nav.licenses": "Lisensi",
+                "nav.contact": "Kontak",
+                "hero.badge": "Mitra terpercaya untuk perjalanan Umrah Anda",
+                "hero.title": 'Perjalanan Umrah <span class="gold">tak terlupakan</span><br>dimulai di sini',
+                "hero.subtitle": "Kami menyediakan layanan Umrah lengkap dengan standar kualitas dan kenyamanan tertinggi — dari pemesanan hotel mewah hingga transportasi nyaman dan bimbingan ahli.",
+                "hero.cta1": "Pesan Umrah Anda sekarang",
+                "hero.cta2": "Jelajahi layanan kami",
+                "hero.stat1": "Visa Umrah",
+                "hero.stat2": "Tahun pengalaman",
+                "hero.stat3": "Dukungan tanpa henti",
+                "about.label": "Tentang kami",
+                "about.title": 'Manasik Visitors untuk <span>Layanan Umrah</span>',
+                "about.p1": "Kami adalah perusahaan Saudi yang mengkhususkan diri dalam layanan Umrah lengkap. Kami berupaya memberikan pengalaman spiritual yang nyaman dan bermakna bagi setiap jamaah, sejak tiba di Arab Saudi hingga keberangkatan.",
+                "about.p2": "Kami percaya perjalanan Umrah harus bebas dari kerumitan, jadi kami mengurus semua pengaturan logistik agar Anda dapat fokus beribadah.",
+                "about.f1": "Layanan lengkap",
+                "about.f2": "Tim spesialis",
+                "about.f3": "Harga kompetitif",
+                "about.f4": "Kepuasan pelanggan",
+                "about.tagline": "Umrah • Hotel • Transportasi",
+                "services.label": "Layanan kami",
+                "services.title": "Layanan Umrah lengkap",
+                "services.desc": "Beragam layanan dirancang untuk memenuhi semua kebutuhan Anda selama perjalanan Umrah.",
+                "services.s1.title": "Pengaturan perjalanan Umrah",
+                "services.s1.desc": "Perencanaan Umrah lengkap dengan program untuk setiap anggaran, menjamin pengalaman spiritual terbaik.",
+                "services.s2.title": "Pemesanan hotel",
+                "services.s2.desc": "Pemesanan di hotel terbaik dekat Masjidil Haram dan Masjid Nabawi dengan harga kompetitif.",
+                "services.s3.title": "Layanan transportasi",
+                "services.s3.desc": "Armada kendaraan modern ber-AC untuk perjalanan aman dan nyaman antar kota suci.",
+                "services.s4.title": "Pemandu spesialis",
+                "services.s4.desc": "Pemandu agama dan wisata berpengalaman tinggi yang menemani Anda sepanjang perjalanan.",
+                "services.s5.title": "Dukungan 24/7",
+                "services.s5.desc": "Tim dukungan kami tersedia sepanjang waktu untuk menjawab pertanyaan Anda kapan saja.",
+                "services.s6.title": "Hidangan & keramahan",
+                "services.s6.desc": "Hidangan beragam dan berkualitas tinggi untuk berbagai selera dengan layanan keramahan kelas atas.",
+                "why.label": "Mengapa pilih kami",
+                "why.title": "Mengapa memilih Manasik Visitors?",
+                "why.desc": "Kami unggul dalam memberikan layanan luar biasa yang menjadikan Umrah Anda tak terlupakan.",
+                "why.w1.title": "Pengalaman luas",
+                "why.w1.desc": "Lebih dari 15 tahun pengalaman mengatur perjalanan Umrah dan melayani ribuan jamaah.",
+                "why.w2.title": "Tim spesialis",
+                "why.w2.desc": "Tim yang berkualifikasi dan terlatih dengan baik untuk memberikan layanan terbaik.",
+                "why.w3.title": "Kualitas tinggi",
+                "why.w3.desc": "Kami menjaga standar kualitas tertinggi di semua layanan — akomodasi, transportasi, dan bimbingan.",
+                "why.w4.title": "Perawatan menyeluruh",
+                "why.w4.desc": "Perawatan terintegrasi dari kedatangan hingga keberangkatan dengan perhatian pada detail terkecil.",
+                "why.w5.title": "Harga kompetitif",
+                "why.w5.desc": "Berbagai paket dengan harga kompetitif untuk setiap anggaran tanpa mengorbankan kualitas.",
+                "why.w6.title": "Kepercayaan & keamanan",
+                "why.w6.desc": "Perusahaan berlisensi dan bersertifikat menjamin perjalanan yang aman dan terpercaya.",
+                "gallery.label": "Acara kami",
+                "gallery.title": "Kehadiran kami di pameran dan acara",
+                "gallery.desc": "Kami berpartisipasi dalam acara dan pameran besar di sektor Haji dan Umrah, bertemu tokoh-tokoh dan mitra penting.",
+                "gallery.more": "Tampilkan lebih banyak foto",
+                "licenses.label": "Lisensi & akreditasi",
+                "licenses.title": "Perusahaan berlisensi dan terakreditasi",
+                "licenses.desc": "Kami beroperasi di bawah lisensi resmi yang disetujui otoritas terkait di Arab Saudi.",
+                "licenses.l1.title": "Lisensi Umrah & Haji",
+                "licenses.l1.desc": "Disetujui Kementerian Haji dan Umrah",
+                "licenses.l2.title": "Pendaftaran komersial",
+                "licenses.l2.desc": "Pendaftaran komersial yang valid dan terdokumentasi resmi",
+                "cta.title": "Siap untuk perjalanan Umrah tak terlupakan?",
+                "cta.desc": "Hubungi kami sekarang dan pesan perjalanan berikutnya bersama Manasik Visitors.",
+                "cta.btn1": "Chat di WhatsApp",
+                "cta.btn2": "Telepon kami",
+                "contact.label": "Hubungi kami",
+                "contact.title": "Kami senang mendengar dari Anda",
+                "contact.desc": "Jangan ragu menghubungi kami untuk pertanyaan atau memesan perjalanan Umrah berikutnya.",
+                "contact.info": "Informasi kontak",
+                "contact.intro": "Hubungi kami melalui salah satu saluran berikut. Tim kami siap menjawab semua pertanyaan Anda.",
+                "contact.phone": "Telepon",
+                "contact.whatsapp": "WhatsApp",
+                "contact.location": "Lokasi",
+                "contact.address": "Al Salwa Tower, Lantai 8, Al Rusayfah, Makkah 24232",
+                "contact.hours": "Jam kerja",
+                "contact.hours_value": "24 jam / 7 hari",
+                "contact.our_location": "Lokasi kami",
+                "contact.short_address": "Al Salwa Tower - Lantai 8 - Makkah",
+                "contact.map_load": "Klik untuk memuat peta",
+                "footer.brand": "Manasik Visitors untuk Layanan Umrah — mitra terpercaya Anda untuk perjalanan Umrah yang nyaman dan istimewa di Arab Saudi.",
+                "footer.quicklinks": "Tautan cepat",
+                "footer.services_title": "Layanan kami",
+                "footer.contact_title": "Hubungi kami",
+                "footer.s1": "Perjalanan Umrah",
+                "footer.s2": "Pemesanan hotel",
+                "footer.s3": "Transportasi",
+                "footer.s4": "Pemandu",
+                "footer.s5": "Dukungan pelanggan",
+                "footer.hours": "Tersedia 24/7",
+                "footer.copyright": 'Hak cipta dilindungi &copy; 2026 <span>Manasik Visitors untuk Layanan Umrah</span>'
+            },
+            ms: {
+                "nav.home": "Utama",
+                "nav.about": "Tentang Kami",
+                "nav.services": "Perkhidmatan",
+                "nav.why": "Mengapa Kami",
+                "nav.gallery": "Galeri",
+                "nav.licenses": "Lesen",
+                "nav.contact": "Hubungi",
+                "hero.badge": "Rakan kongsi yang dipercayai untuk Umrah anda",
+                "hero.title": 'Perjalanan Umrah yang <span class="gold">tidak dilupakan</span><br>bermula di sini',
+                "hero.subtitle": "Kami menyediakan perkhidmatan Umrah yang menyeluruh dengan standard kualiti dan keselesaan tertinggi — daripada tempahan hotel mewah hingga pengangkutan selesa dan bimbingan pakar.",
+                "hero.cta1": "Tempah Umrah anda sekarang",
+                "hero.cta2": "Terokai perkhidmatan kami",
+                "hero.stat1": "Visa Umrah",
+                "hero.stat2": "Tahun pengalaman",
+                "hero.stat3": "Sokongan berterusan",
+                "about.label": "Tentang kami",
+                "about.title": 'Manasik Visitors untuk <span>Perkhidmatan Umrah</span>',
+                "about.p1": "Kami adalah syarikat Saudi yang pakar dalam menyediakan perkhidmatan Umrah yang menyeluruh. Kami berusaha menawarkan pengalaman rohani yang selesa dan bermakna untuk setiap jemaah, dari ketibaan di Arab Saudi sehingga pemergian.",
+                "about.p2": "Kami percaya perjalanan Umrah harus bebas daripada kerumitan, jadi kami menguruskan semua pengaturan logistik supaya anda boleh fokus pada ibadah.",
+                "about.f1": "Perkhidmatan menyeluruh",
+                "about.f2": "Pasukan pakar",
+                "about.f3": "Harga kompetitif",
+                "about.f4": "Kepuasan pelanggan",
+                "about.tagline": "Umrah • Hotel • Pengangkutan",
+                "services.label": "Perkhidmatan kami",
+                "services.title": "Perkhidmatan Umrah yang menyeluruh",
+                "services.desc": "Pelbagai perkhidmatan direka untuk memenuhi semua keperluan anda sepanjang perjalanan Umrah.",
+                "services.s1.title": "Pengaturan perjalanan Umrah",
+                "services.s1.desc": "Perancangan Umrah penuh dengan program untuk setiap bajet, menjamin pengalaman rohani terbaik.",
+                "services.s2.title": "Tempahan hotel",
+                "services.s2.desc": "Tempahan di hotel terbaik berhampiran Masjidil Haram dan Masjid Nabawi dengan harga kompetitif.",
+                "services.s3.title": "Perkhidmatan pengangkutan",
+                "services.s3.desc": "Armada kenderaan moden berhawa dingin untuk perjalanan selamat dan selesa di kota suci.",
+                "services.s4.title": "Pemandu pakar",
+                "services.s4.desc": "Pemandu agama dan pelancongan berpengalaman tinggi yang menemani anda sepanjang perjalanan.",
+                "services.s5.title": "Sokongan 24/7",
+                "services.s5.desc": "Pasukan sokongan kami tersedia sepanjang masa untuk menjawab pertanyaan anda bila-bila masa.",
+                "services.s6.title": "Hidangan & layanan",
+                "services.s6.desc": "Hidangan pelbagai berkualiti tinggi yang sesuai untuk pelbagai cita rasa dengan layanan istimewa.",
+                "why.label": "Mengapa pilih kami",
+                "why.title": "Mengapa memilih Manasik Visitors?",
+                "why.desc": "Kami menonjol dalam menyediakan perkhidmatan luar biasa yang menjadikan Umrah anda tidak dilupakan.",
+                "why.w1.title": "Pengalaman luas",
+                "why.w1.desc": "Lebih 15 tahun pengalaman mengatur perjalanan Umrah dan melayani ribuan jemaah.",
+                "why.w2.title": "Pasukan pakar",
+                "why.w2.desc": "Pasukan berkelayakan dan terlatih untuk menyediakan perkhidmatan terbaik.",
+                "why.w3.title": "Kualiti tinggi",
+                "why.w3.desc": "Kami mengekalkan standard kualiti tertinggi dalam semua perkhidmatan kami.",
+                "why.w4.title": "Penjagaan menyeluruh",
+                "why.w4.desc": "Penjagaan bersepadu dari ketibaan hingga pemergian dengan perhatian terhadap perincian terkecil.",
+                "why.w5.title": "Harga kompetitif",
+                "why.w5.desc": "Pakej pelbagai pada harga kompetitif untuk setiap bajet tanpa berkompromi kualiti.",
+                "why.w6.title": "Kepercayaan & keselamatan",
+                "why.w6.desc": "Syarikat berlesen dan diperakui menjamin perjalanan yang selamat dan boleh dipercayai.",
+                "gallery.label": "Acara kami",
+                "gallery.title": "Kehadiran kami di pameran dan acara",
+                "gallery.desc": "Kami menyertai acara dan pameran utama dalam sektor Haji dan Umrah, bertemu tokoh dan rakan kongsi penting.",
+                "gallery.more": "Tunjukkan lebih banyak foto",
+                "licenses.label": "Lesen & pengiktirafan",
+                "licenses.title": "Syarikat berlesen dan diperakui",
+                "licenses.desc": "Kami beroperasi di bawah lesen rasmi yang diluluskan oleh pihak berkuasa di Arab Saudi.",
+                "licenses.l1.title": "Lesen Umrah & Haji",
+                "licenses.l1.desc": "Diluluskan oleh Kementerian Haji dan Umrah",
+                "licenses.l2.title": "Pendaftaran perniagaan",
+                "licenses.l2.desc": "Pendaftaran perniagaan yang sah dan didokumenkan secara rasmi",
+                "cta.title": "Bersedia untuk perjalanan Umrah yang tidak dilupakan?",
+                "cta.desc": "Hubungi kami sekarang dan tempah perjalanan seterusnya bersama Manasik Visitors.",
+                "cta.btn1": "Sembang di WhatsApp",
+                "cta.btn2": "Hubungi kami",
+                "contact.label": "Hubungi kami",
+                "contact.title": "Kami berbesar hati mendengar daripada anda",
+                "contact.desc": "Jangan teragak-agak menghubungi kami untuk sebarang pertanyaan atau menempah perjalanan Umrah anda.",
+                "contact.info": "Maklumat hubungan",
+                "contact.intro": "Hubungi kami melalui mana-mana saluran berikut. Pasukan kami bersedia menjawab semua pertanyaan anda.",
+                "contact.phone": "Telefon",
+                "contact.whatsapp": "WhatsApp",
+                "contact.location": "Lokasi",
+                "contact.address": "Al Salwa Tower, Tingkat 8, Al Rusayfah, Makkah 24232",
+                "contact.hours": "Waktu operasi",
+                "contact.hours_value": "24 jam / 7 hari",
+                "contact.our_location": "Lokasi kami",
+                "contact.short_address": "Al Salwa Tower - Tingkat 8 - Makkah",
+                "contact.map_load": "Klik untuk memuat peta",
+                "footer.brand": "Manasik Visitors untuk Perkhidmatan Umrah — rakan kongsi anda yang dipercayai untuk perjalanan Umrah yang selesa dan istimewa di Arab Saudi.",
+                "footer.quicklinks": "Pautan pantas",
+                "footer.services_title": "Perkhidmatan kami",
+                "footer.contact_title": "Hubungi kami",
+                "footer.s1": "Perjalanan Umrah",
+                "footer.s2": "Tempahan hotel",
+                "footer.s3": "Pengangkutan",
+                "footer.s4": "Pemandu",
+                "footer.s5": "Sokongan pelanggan",
+                "footer.hours": "Tersedia 24/7",
+                "footer.copyright": 'Hak cipta terpelihara &copy; 2026 <span>Manasik Visitors untuk Perkhidmatan Umrah</span>'
+            },
+            ur: {
+                "nav.home": "صفحہ اول",
+                "nav.about": "ہمارے بارے میں",
+                "nav.services": "خدمات",
+                "nav.why": "ہم کیوں",
+                "nav.gallery": "گیلری",
+                "nav.licenses": "لائسنسز",
+                "nav.contact": "رابطہ",
+                "hero.badge": "آپ کے عمرے کا قابل اعتماد ساتھی",
+                "hero.title": 'ایک <span class="gold">ناقابلِ فراموش</span><br>عمرے کا سفر یہاں سے شروع ہوتا ہے',
+                "hero.subtitle": "ہم اعلیٰ ترین معیار اور سہولت کے ساتھ مکمل عمرہ خدمات فراہم کرتے ہیں — لگژری ہوٹل بکنگ سے لے کر آرام دہ ٹرانسپورٹ اور ماہر رہنمائی تک۔",
+                "hero.cta1": "ابھی اپنا عمرہ بُک کریں",
+                "hero.cta2": "ہماری خدمات دیکھیں",
+                "hero.stat1": "عمرہ ویزے",
+                "hero.stat2": "سال تجربہ",
+                "hero.stat3": "مسلسل سپورٹ",
+                "about.label": "ہمارے بارے میں",
+                "about.title": 'مناسک الزوار برائے <span>عمرہ خدمات</span>',
+                "about.p1": "ہم ایک سعودی کمپنی ہیں جو مکمل عمرہ خدمات میں مہارت رکھتی ہے۔ ہم ہر معتمر کے لیے سعودی عرب آمد سے روانگی تک ایک آرام دہ اور بامعنی روحانی تجربہ فراہم کرنے کی کوشش کرتے ہیں۔",
+                "about.p2": "ہم سمجھتے ہیں کہ عمرے کا سفر پیچیدگیوں سے پاک ہونا چاہیے، اس لیے ہم تمام لوجسٹک انتظامات سنبھالتے ہیں تاکہ آپ عبادت پر توجہ مرکوز کر سکیں۔",
+                "about.f1": "مکمل خدمات",
+                "about.f2": "ماہر ٹیم",
+                "about.f3": "مناسب قیمتیں",
+                "about.f4": "صارفین کا اطمینان",
+                "about.tagline": "عمرہ • ہوٹل • ٹرانسپورٹ",
+                "services.label": "ہماری خدمات",
+                "services.title": "مکمل عمرہ خدمات",
+                "services.desc": "آپ کے عمرے کے سفر کے دوران تمام ضروریات پوری کرنے کے لیے متنوع خدمات۔",
+                "services.s1.title": "عمرہ سفر کی ترتیب",
+                "services.s1.desc": "ہر بجٹ کے مطابق پروگراموں کے ساتھ مکمل عمرہ پلاننگ، بہترین روحانی تجربے کی ضمانت۔",
+                "services.s2.title": "ہوٹل بکنگ",
+                "services.s2.desc": "حرم مکی اور مسجد نبوی کے قریب بہترین ہوٹلوں میں مناسب نرخوں پر بکنگ۔",
+                "services.s3.title": "ٹرانسپورٹ خدمات",
+                "services.s3.desc": "مقدس شہروں کے درمیان اور اندر محفوظ، آرام دہ سفر کے لیے جدید، ایئر کنڈیشنڈ گاڑیوں کا بیڑا۔",
+                "services.s4.title": "ماہر گائیڈز",
+                "services.s4.desc": "تجربہ کار مذہبی اور سیاحتی گائیڈز جو پورے سفر میں آپ کے ساتھ رہتے ہیں۔",
+                "services.s5.title": "24/7 سپورٹ",
+                "services.s5.desc": "ہماری سپورٹ ٹیم ہر وقت آپ کے سوالات کا جواب دینے اور ضروریات پوری کرنے کے لیے دستیاب ہے۔",
+                "services.s6.title": "کھانا اور مہمان نوازی",
+                "services.s6.desc": "مختلف ذوق کے مطابق متنوع، اعلیٰ معیار کے کھانے ممتاز مہمان نوازی کے ساتھ۔",
+                "why.label": "ہمیں کیوں چنیں",
+                "why.title": "مناسک الزوار کیوں چنیں؟",
+                "why.desc": "ہم غیر معمولی خدمات فراہم کرنے میں ممتاز ہیں جو آپ کے عمرے کو یادگار بناتی ہیں۔",
+                "why.w1.title": "وسیع تجربہ",
+                "why.w1.desc": "عمرہ سفر کی ترتیب اور ہزاروں معتمرین کی خدمت کا 15 سال سے زائد تجربہ۔",
+                "why.w2.title": "ماہر ٹیم",
+                "why.w2.desc": "بہترین ممکنہ خدمات فراہم کرنے کے لیے اعلیٰ تربیت یافتہ ٹیم۔",
+                "why.w3.title": "اعلیٰ معیار",
+                "why.w3.desc": "رہائش، ٹرانسپورٹ اور رہنمائی سمیت تمام خدمات میں اعلیٰ ترین معیار برقرار رکھتے ہیں۔",
+                "why.w4.title": "مکمل دیکھ بھال",
+                "why.w4.desc": "آمد سے روانگی تک مربوط دیکھ بھال، چھوٹی سے چھوٹی تفصیلات پر توجہ۔",
+                "why.w5.title": "مناسب قیمتیں",
+                "why.w5.desc": "ہر بجٹ کے لیے معیار سے سمجھوتہ کیے بغیر مختلف پیکجز مناسب قیمتوں پر۔",
+                "why.w6.title": "اعتماد اور تحفظ",
+                "why.w6.desc": "لائسنس یافتہ اور تصدیق شدہ کمپنی ہر لحاظ سے محفوظ اور قابل اعتماد سفر کی ضمانت دیتی ہے۔",
+                "gallery.label": "ہماری تقریبات",
+                "gallery.title": "نمائشوں اور تقریبات میں ہماری موجودگی",
+                "gallery.desc": "ہم حج اور عمرہ شعبے کی اہم تقریبات اور نمائشوں میں شرکت کرتے ہیں اور نمایاں شخصیات اور شراکت داروں سے ملتے ہیں۔",
+                "gallery.more": "مزید تصاویر دکھائیں",
+                "licenses.label": "لائسنسز اور منظوریاں",
+                "licenses.title": "لائسنس یافتہ اور تصدیق شدہ کمپنی",
+                "licenses.desc": "ہم سعودی عرب میں متعلقہ حکام کے منظور شدہ سرکاری لائسنسز کے تحت کام کرتے ہیں۔",
+                "licenses.l1.title": "عمرہ اور حج لائسنس",
+                "licenses.l1.desc": "وزارت حج و عمرہ سے منظور شدہ",
+                "licenses.l2.title": "تجارتی رجسٹریشن",
+                "licenses.l2.desc": "درست اور سرکاری طور پر دستاویزی تجارتی رجسٹریشن",
+                "cta.title": "ایک ناقابل فراموش عمرے کے سفر کے لیے تیار ہیں؟",
+                "cta.desc": "ابھی ہم سے رابطہ کریں اور مناسک الزوار کے ساتھ اپنا اگلا سفر بک کریں۔",
+                "cta.btn1": "واٹس ایپ پر رابطہ کریں",
+                "cta.btn2": "ہمیں کال کریں",
+                "contact.label": "ہم سے رابطہ کریں",
+                "contact.title": "ہم آپ سے سننے کے منتظر ہیں",
+                "contact.desc": "کسی بھی استفسار یا اپنے اگلے عمرے کی بکنگ کے لیے ہم سے رابطہ کرنے میں ہچکچاہٹ نہ کریں۔",
+                "contact.info": "رابطہ کی معلومات",
+                "contact.intro": "درج ذیل چینلز میں سے کسی کے ذریعے ہم سے رابطہ کریں۔ ہماری ٹیم آپ کے تمام سوالات کے جوابات کے لیے تیار ہے۔",
+                "contact.phone": "فون",
+                "contact.whatsapp": "واٹس ایپ",
+                "contact.location": "مقام",
+                "contact.address": "السلوى ٹاور، 8 ویں منزل، الرصیفہ، مکہ 24232",
+                "contact.hours": "کام کے اوقات",
+                "contact.hours_value": "24 گھنٹے / 7 دن",
+                "contact.our_location": "ہمارا مقام",
+                "contact.short_address": "السلوى ٹاور - 8 ویں منزل - مکہ",
+                "contact.map_load": "نقشہ لوڈ کرنے کے لیے کلک کریں",
+                "footer.brand": "مناسک الزوار برائے عمرہ خدمات — سعودی عرب میں ایک آرام دہ اور ممتاز عمرے کے سفر کے لیے آپ کا قابل اعتماد ساتھی۔",
+                "footer.quicklinks": "فوری لنکس",
+                "footer.services_title": "ہماری خدمات",
+                "footer.contact_title": "ہم سے رابطہ کریں",
+                "footer.s1": "عمرہ سفر",
+                "footer.s2": "ہوٹل بکنگ",
+                "footer.s3": "ٹرانسپورٹ",
+                "footer.s4": "گائیڈز",
+                "footer.s5": "صارفین کی سپورٹ",
+                "footer.hours": "24/7 دستیاب",
+                "footer.copyright": 'جملہ حقوق محفوظ ہیں &copy; 2026 <span>مناسک الزوار برائے عمرہ خدمات</span>'
+            },
+            fa: {
+                "nav.home": "خانه",
+                "nav.about": "درباره ما",
+                "nav.services": "خدمات",
+                "nav.why": "چرا ما",
+                "nav.gallery": "گالری",
+                "nav.licenses": "مجوزها",
+                "nav.contact": "تماس",
+                "hero.badge": "شریک قابل اعتماد شما برای سفر عمره",
+                "hero.title": 'یک سفر عمره <span class="gold">فراموش‌نشدنی</span><br>از اینجا آغاز می‌شود',
+                "hero.subtitle": "ما خدمات کامل عمره را با بالاترین استانداردهای کیفیت و راحتی ارائه می‌دهیم — از رزرو هتل‌های لوکس تا حمل‌ونقل راحت و راهنمایی تخصصی.",
+                "hero.cta1": "همین حالا عمره خود را رزرو کنید",
+                "hero.cta2": "خدمات ما را کشف کنید",
+                "hero.stat1": "ویزای عمره",
+                "hero.stat2": "سال تجربه",
+                "hero.stat3": "پشتیبانی مداوم",
+                "about.label": "درباره ما",
+                "about.title": 'مناسک الزوار برای <span>خدمات عمره</span>',
+                "about.p1": "ما یک شرکت عربستانی متخصص در ارائه خدمات کامل عمره هستیم. تلاش می‌کنیم تجربه‌ای روحانی راحت و معنادار را برای هر زائر، از لحظه ورود به عربستان تا خروج، فراهم کنیم.",
+                "about.p2": "ما معتقدیم سفر عمره باید عاری از پیچیدگی باشد، بنابراین تمام تنظیمات لجستیکی را به عهده می‌گیریم تا شما بتوانید روی عبادت تمرکز کنید.",
+                "about.f1": "خدمات کامل",
+                "about.f2": "تیم متخصص",
+                "about.f3": "قیمت‌های رقابتی",
+                "about.f4": "رضایت مشتری",
+                "about.tagline": "عمره • هتل • حمل‌ونقل",
+                "services.label": "خدمات ما",
+                "services.title": "خدمات کامل عمره",
+                "services.desc": "مجموعه‌ای متنوع از خدمات طراحی‌شده برای پاسخگویی به همه نیازهای شما در طول سفر عمره.",
+                "services.s1.title": "سازماندهی سفر عمره",
+                "services.s1.desc": "برنامه‌ریزی کامل عمره با برنامه‌هایی برای هر بودجه، با تضمین بهترین تجربه روحانی.",
+                "services.s2.title": "رزرو هتل",
+                "services.s2.desc": "رزرو در بهترین هتل‌های نزدیک مسجدالحرام و مسجد النبی با قیمت‌های رقابتی.",
+                "services.s3.title": "خدمات حمل‌ونقل",
+                "services.s3.desc": "ناوگانی از خودروهای مدرن و دارای تهویه برای سفر ایمن و راحت بین شهرهای مقدس.",
+                "services.s4.title": "راهنمایان متخصص",
+                "services.s4.desc": "راهنمایان مذهبی و گردشگری با تجربه که در طول سفر همراه شما هستند.",
+                "services.s5.title": "پشتیبانی ۲۴/۷",
+                "services.s5.desc": "تیم پشتیبانی ما در تمام ساعات شبانه‌روز برای پاسخگویی به سوالات شما در دسترس است.",
+                "services.s6.title": "غذا و پذیرایی",
+                "services.s6.desc": "غذاهای متنوع و باکیفیت متناسب با سلیقه‌های مختلف با خدمات پذیرایی ممتاز.",
+                "why.label": "چرا ما را انتخاب کنید",
+                "why.title": "چرا مناسک الزوار را انتخاب کنید؟",
+                "why.desc": "ما در ارائه خدمات استثنایی که سفر عمره شما را فراموش‌نشدنی می‌کند متمایز هستیم.",
+                "why.w1.title": "تجربه گسترده",
+                "why.w1.desc": "بیش از ۱۵ سال تجربه در سازماندهی سفرهای عمره و خدمت به هزاران زائر.",
+                "why.w2.title": "تیم متخصص",
+                "why.w2.desc": "تیمی واجد شرایط و آموزش‌دیده برای ارائه بهترین خدمات ممکن.",
+                "why.w3.title": "کیفیت بالا",
+                "why.w3.desc": "ما بالاترین استانداردهای کیفیت را در تمام خدمات خود حفظ می‌کنیم.",
+                "why.w4.title": "مراقبت کامل",
+                "why.w4.desc": "مراقبت یکپارچه از ورود تا خروج با توجه به کوچک‌ترین جزئیات.",
+                "why.w5.title": "قیمت‌های رقابتی",
+                "why.w5.desc": "بسته‌های متنوع با قیمت‌های رقابتی برای هر بودجه بدون قربانی کردن کیفیت.",
+                "why.w6.title": "اعتماد و امنیت",
+                "why.w6.desc": "شرکت دارای مجوز و تأیید‌شده تضمین‌کننده سفری ایمن و قابل اعتماد است.",
+                "gallery.label": "رویدادهای ما",
+                "gallery.title": "حضور ما در نمایشگاه‌ها و رویدادها",
+                "gallery.desc": "ما در رویدادها و نمایشگاه‌های مهم بخش حج و عمره شرکت می‌کنیم و با چهره‌ها و شرکای برجسته دیدار می‌کنیم.",
+                "gallery.more": "نمایش تصاویر بیشتر",
+                "licenses.label": "مجوزها و اعتبارنامه‌ها",
+                "licenses.title": "شرکت دارای مجوز و معتبر",
+                "licenses.desc": "ما تحت مجوزهای رسمی تأیید‌شده توسط مقامات مربوطه در عربستان فعالیت می‌کنیم.",
+                "licenses.l1.title": "مجوز عمره و حج",
+                "licenses.l1.desc": "تأیید‌شده توسط وزارت حج و عمره",
+                "licenses.l2.title": "ثبت تجاری",
+                "licenses.l2.desc": "ثبت تجاری معتبر و رسماً مستند",
+                "cta.title": "آماده یک سفر عمره فراموش‌نشدنی هستید؟",
+                "cta.desc": "همین حالا با ما تماس بگیرید و سفر بعدی خود را با مناسک الزوار رزرو کنید.",
+                "cta.btn1": "گفتگو در واتس‌اپ",
+                "cta.btn2": "با ما تماس بگیرید",
+                "contact.label": "تماس با ما",
+                "contact.title": "خوشحالیم که از شما بشنویم",
+                "contact.desc": "برای هر سوال یا رزرو سفر بعدی عمره خود از تماس با ما دریغ نکنید.",
+                "contact.info": "اطلاعات تماس",
+                "contact.intro": "از طریق هر یک از کانال‌های زیر با ما در تماس باشید. تیم ما آماده پاسخگویی به همه سوالات شماست.",
+                "contact.phone": "تلفن",
+                "contact.whatsapp": "واتس‌اپ",
+                "contact.location": "موقعیت",
+                "contact.address": "برج السلوی، طبقه ۸، الرصیفه، مکه ۲۴۲۳۲",
+                "contact.hours": "ساعات کاری",
+                "contact.hours_value": "۲۴ ساعت / ۷ روز",
+                "contact.our_location": "موقعیت ما",
+                "contact.short_address": "برج السلوی - طبقه ۸ - مکه",
+                "contact.map_load": "برای بارگذاری نقشه کلیک کنید",
+                "footer.brand": "مناسک الزوار برای خدمات عمره — شریک قابل اعتماد شما برای سفر عمره‌ای راحت و متمایز در عربستان سعودی.",
+                "footer.quicklinks": "لینک‌های سریع",
+                "footer.services_title": "خدمات ما",
+                "footer.contact_title": "تماس با ما",
+                "footer.s1": "سفرهای عمره",
+                "footer.s2": "رزرو هتل",
+                "footer.s3": "حمل‌ونقل",
+                "footer.s4": "راهنمایان",
+                "footer.s5": "پشتیبانی مشتری",
+                "footer.hours": "۲۴/۷ در دسترس",
+                "footer.copyright": 'تمامی حقوق محفوظ است &copy; ۲۰۲۶ <span>مناسک الزوار برای خدمات عمره</span>'
+            },
+            fr: {
+                "nav.home": "Accueil",
+                "nav.about": "À propos",
+                "nav.services": "Services",
+                "nav.why": "Pourquoi nous",
+                "nav.gallery": "Galerie",
+                "nav.licenses": "Licences",
+                "nav.contact": "Contact",
+                "hero.badge": "Votre partenaire de confiance pour la Omra",
+                "hero.title": 'Un voyage de Omra <span class="gold">inoubliable</span><br>commence ici',
+                "hero.subtitle": "Nous offrons des services de Omra complets aux plus hauts standards de qualité et de confort — des réservations d'hôtels de luxe au transport confortable et à l'accompagnement spécialisé.",
+                "hero.cta1": "Réservez votre Omra maintenant",
+                "hero.cta2": "Découvrez nos services",
+                "hero.stat1": "Visas Omra",
+                "hero.stat2": "Années d'expérience",
+                "hero.stat3": "Assistance continue",
+                "about.label": "À propos",
+                "about.title": 'Manasik Visitors pour les <span>services de Omra</span>',
+                "about.p1": "Nous sommes une société saoudienne spécialisée dans les services de Omra complets. Nous nous efforçons d'offrir une expérience spirituelle confortable et significative à chaque pèlerin, de l'arrivée en Arabie saoudite jusqu'au départ.",
+                "about.p2": "Nous croyons qu'un voyage de Omra doit être sans complications. Nous nous chargeons donc de tous les arrangements logistiques pour que vous puissiez vous consacrer à l'adoration.",
+                "about.f1": "Services complets",
+                "about.f2": "Équipe spécialisée",
+                "about.f3": "Prix compétitifs",
+                "about.f4": "Satisfaction client",
+                "about.tagline": "Omra • Hôtels • Transport",
+                "services.label": "Nos services",
+                "services.title": "Services de Omra complets",
+                "services.desc": "Une gamme variée de services conçus pour répondre à tous vos besoins pendant votre voyage de Omra.",
+                "services.s1.title": "Organisation de voyage Omra",
+                "services.s1.desc": "Planification complète de Omra avec des programmes pour tous les budgets, garantissant la meilleure expérience spirituelle.",
+                "services.s2.title": "Réservations d'hôtels",
+                "services.s2.desc": "Réservations dans les meilleurs hôtels près de la Mosquée Sacrée et de la Mosquée du Prophète à des prix compétitifs.",
+                "services.s3.title": "Services de transport",
+                "services.s3.desc": "Une flotte de véhicules modernes et climatisés pour des déplacements sûrs et confortables entre les villes saintes.",
+                "services.s4.title": "Guides spécialisés",
+                "services.s4.desc": "Guides religieux et touristiques très expérimentés qui vous accompagnent tout au long du voyage.",
+                "services.s5.title": "Support 24/7",
+                "services.s5.desc": "Notre équipe d'assistance est disponible à tout moment pour répondre à vos questions.",
+                "services.s6.title": "Repas et hospitalité",
+                "services.s6.desc": "Repas variés et de haute qualité adaptés à différents goûts avec un service d'hospitalité distingué.",
+                "why.label": "Pourquoi nous choisir",
+                "why.title": "Pourquoi choisir Manasik Visitors ?",
+                "why.desc": "Nous excellons dans la prestation de services exceptionnels qui rendent votre Omra inoubliable.",
+                "why.w1.title": "Large expérience",
+                "why.w1.desc": "Plus de 15 ans d'expérience dans l'organisation de voyages de Omra au service de milliers de pèlerins.",
+                "why.w2.title": "Équipe spécialisée",
+                "why.w2.desc": "Une équipe qualifiée et formée au plus haut niveau pour offrir le meilleur service.",
+                "why.w3.title": "Haute qualité",
+                "why.w3.desc": "Nous maintenons les normes de qualité les plus élevées dans tous nos services.",
+                "why.w4.title": "Soins complets",
+                "why.w4.desc": "Soins intégrés de l'arrivée au départ avec attention aux moindres détails.",
+                "why.w5.title": "Prix compétitifs",
+                "why.w5.desc": "Forfaits variés à des prix compétitifs pour tous les budgets sans compromettre la qualité.",
+                "why.w6.title": "Confiance et sécurité",
+                "why.w6.desc": "Une société agréée et certifiée garantissant un voyage sûr et fiable.",
+                "gallery.label": "Nos événements",
+                "gallery.title": "Notre présence aux salons et événements",
+                "gallery.desc": "Nous participons aux principaux événements et salons du secteur du Hadj et de la Omra, rencontrant des personnalités et partenaires de premier plan.",
+                "gallery.more": "Afficher plus de photos",
+                "licenses.label": "Licences et accréditations",
+                "licenses.title": "Une société agréée et certifiée",
+                "licenses.desc": "Nous opérons sous des licences officielles approuvées par les autorités compétentes en Arabie saoudite.",
+                "licenses.l1.title": "Licence Omra et Hadj",
+                "licenses.l1.desc": "Approuvée par le Ministère du Hadj et de la Omra",
+                "licenses.l2.title": "Registre commercial",
+                "licenses.l2.desc": "Registre commercial valide et officiellement documenté",
+                "cta.title": "Prêt pour un voyage de Omra inoubliable ?",
+                "cta.desc": "Contactez-nous maintenant et réservez votre prochain voyage avec Manasik Visitors.",
+                "cta.btn1": "Discuter sur WhatsApp",
+                "cta.btn2": "Appelez-nous",
+                "contact.label": "Contactez-nous",
+                "contact.title": "Nous serions ravis de vous entendre",
+                "contact.desc": "N'hésitez pas à nous contacter pour toute demande ou pour réserver votre prochain voyage de Omra.",
+                "contact.info": "Informations de contact",
+                "contact.intro": "Joignez-nous via l'un des canaux suivants. Notre équipe est prête à répondre à toutes vos questions.",
+                "contact.phone": "Téléphone",
+                "contact.whatsapp": "WhatsApp",
+                "contact.location": "Emplacement",
+                "contact.address": "Tour Al Salwa, 8e étage, Al Rusayfah, La Mecque 24232",
+                "contact.hours": "Heures d'ouverture",
+                "contact.hours_value": "24h / 7j",
+                "contact.our_location": "Notre emplacement",
+                "contact.short_address": "Tour Al Salwa - 8e étage - La Mecque",
+                "contact.map_load": "Cliquez pour charger la carte",
+                "footer.brand": "Manasik Visitors pour les services de Omra — votre partenaire de confiance pour un voyage de Omra confortable et distingué en Arabie saoudite.",
+                "footer.quicklinks": "Liens rapides",
+                "footer.services_title": "Nos services",
+                "footer.contact_title": "Contactez-nous",
+                "footer.s1": "Voyages Omra",
+                "footer.s2": "Réservation d'hôtel",
+                "footer.s3": "Transport",
+                "footer.s4": "Guides",
+                "footer.s5": "Support client",
+                "footer.hours": "Disponible 24h/24 et 7j/7",
+                "footer.copyright": 'Tous droits réservés &copy; 2026 <span>Manasik Visitors pour les services de Omra</span>'
+            },
+            hi: {
+                "nav.home": "होम",
+                "nav.about": "हमारे बारे में",
+                "nav.services": "सेवाएँ",
+                "nav.why": "हम क्यों",
+                "nav.gallery": "गैलरी",
+                "nav.licenses": "लाइसेंस",
+                "nav.contact": "संपर्क",
+                "hero.badge": "आपके उमरा यात्रा के विश्वसनीय साथी",
+                "hero.title": 'एक <span class="gold">अविस्मरणीय</span><br>उमरा यात्रा यहाँ से शुरू होती है',
+                "hero.subtitle": "हम उच्चतम गुणवत्ता और आराम के मानकों के साथ संपूर्ण उमरा सेवाएँ प्रदान करते हैं — लक्जरी होटल बुकिंग से लेकर आरामदायक परिवहन और विशेषज्ञ मार्गदर्शन तक।",
+                "hero.cta1": "अभी अपना उमरा बुक करें",
+                "hero.cta2": "हमारी सेवाएँ देखें",
+                "hero.stat1": "उमरा वीज़ा",
+                "hero.stat2": "वर्षों का अनुभव",
+                "hero.stat3": "निरंतर सहायता",
+                "about.label": "हमारे बारे में",
+                "about.title": 'मनासिक विज़िटर्स <span>उमरा सेवाओं</span> के लिए',
+                "about.p1": "हम एक सऊदी कंपनी हैं जो संपूर्ण उमरा सेवाओं में विशेषज्ञ है। हम सऊदी अरब आगमन से प्रस्थान तक हर यात्री के लिए आरामदायक और सार्थक आध्यात्मिक अनुभव प्रदान करने का प्रयास करते हैं।",
+                "about.p2": "हम मानते हैं कि उमरा यात्रा जटिलताओं से मुक्त होनी चाहिए, इसलिए हम सभी लॉजिस्टिक व्यवस्थाएं संभालते हैं ताकि आप पूजा पर ध्यान केंद्रित कर सकें।",
+                "about.f1": "संपूर्ण सेवाएँ",
+                "about.f2": "विशेषज्ञ टीम",
+                "about.f3": "प्रतिस्पर्धी मूल्य",
+                "about.f4": "ग्राहक संतुष्टि",
+                "about.tagline": "उमरा • होटल • परिवहन",
+                "services.label": "हमारी सेवाएँ",
+                "services.title": "संपूर्ण उमरा सेवाएँ",
+                "services.desc": "आपकी उमरा यात्रा के दौरान सभी आवश्यकताओं को पूरा करने के लिए विविध सेवाओं की एक श्रृंखला।",
+                "services.s1.title": "उमरा यात्रा का आयोजन",
+                "services.s1.desc": "हर बजट के लिए कार्यक्रमों के साथ पूर्ण उमरा योजना, सर्वोत्तम आध्यात्मिक अनुभव की गारंटी।",
+                "services.s2.title": "होटल बुकिंग",
+                "services.s2.desc": "मस्जिद अल-हरम और मस्जिद अल-नबवी के पास सर्वश्रेष्ठ होटलों में प्रतिस्पर्धी दरों पर बुकिंग।",
+                "services.s3.title": "परिवहन सेवाएँ",
+                "services.s3.desc": "पवित्र शहरों के बीच और भीतर सुरक्षित, आरामदायक यात्रा के लिए आधुनिक, वातानुकूलित वाहनों का बेड़ा।",
+                "services.s4.title": "विशेषज्ञ गाइड",
+                "services.s4.desc": "अनुभवी धार्मिक और पर्यटन गाइड जो पूरी यात्रा में आपके साथ रहते हैं।",
+                "services.s5.title": "24/7 सहायता",
+                "services.s5.desc": "हमारी सहायता टीम आपके प्रश्नों का उत्तर देने और आपकी आवश्यकताओं को पूरा करने के लिए हर समय उपलब्ध है।",
+                "services.s6.title": "भोजन और आतिथ्य",
+                "services.s6.desc": "विभिन्न स्वादों के अनुरूप विविध, उच्च गुणवत्ता वाले भोजन के साथ विशिष्ट आतिथ्य सेवा।",
+                "why.label": "हमें क्यों चुनें",
+                "why.title": "मनासिक विज़िटर्स को क्यों चुनें?",
+                "why.desc": "हम असाधारण सेवाएँ प्रदान करने में उत्कृष्ट हैं जो आपकी उमरा यात्रा को अविस्मरणीय बनाती हैं।",
+                "why.w1.title": "व्यापक अनुभव",
+                "why.w1.desc": "उमरा यात्राओं के आयोजन और हजारों यात्रियों की सेवा का 15 से अधिक वर्षों का अनुभव।",
+                "why.w2.title": "विशेषज्ञ टीम",
+                "why.w2.desc": "सर्वोत्तम संभव सेवा प्रदान करने के लिए योग्य और प्रशिक्षित टीम।",
+                "why.w3.title": "उच्च गुणवत्ता",
+                "why.w3.desc": "हम अपनी सभी सेवाओं में उच्चतम गुणवत्ता मानकों को बनाए रखते हैं।",
+                "why.w4.title": "संपूर्ण देखभाल",
+                "why.w4.desc": "आगमन से प्रस्थान तक एकीकृत देखभाल, सबसे छोटे विवरण पर ध्यान।",
+                "why.w5.title": "प्रतिस्पर्धी मूल्य",
+                "why.w5.desc": "गुणवत्ता से समझौता किए बिना हर बजट के लिए विविध पैकेज।",
+                "why.w6.title": "विश्वास और सुरक्षा",
+                "why.w6.desc": "लाइसेंस प्राप्त और प्रमाणित कंपनी सुरक्षित और विश्वसनीय यात्रा की गारंटी देती है।",
+                "gallery.label": "हमारे आयोजन",
+                "gallery.title": "प्रदर्शनियों और कार्यक्रमों में हमारी उपस्थिति",
+                "gallery.desc": "हम हज और उमरा क्षेत्र के प्रमुख आयोजनों और प्रदर्शनियों में भाग लेते हैं, प्रमुख व्यक्तियों और भागीदारों से मिलते हैं।",
+                "gallery.more": "और तस्वीरें दिखाएँ",
+                "licenses.label": "लाइसेंस और मान्यताएँ",
+                "licenses.title": "लाइसेंस प्राप्त और प्रमाणित कंपनी",
+                "licenses.desc": "हम सऊदी अरब के संबंधित अधिकारियों द्वारा अनुमोदित आधिकारिक लाइसेंस के तहत काम करते हैं।",
+                "licenses.l1.title": "उमरा और हज लाइसेंस",
+                "licenses.l1.desc": "हज और उमरा मंत्रालय द्वारा अनुमोदित",
+                "licenses.l2.title": "वाणिज्यिक पंजीकरण",
+                "licenses.l2.desc": "वैध और आधिकारिक रूप से प्रलेखित वाणिज्यिक पंजीकरण",
+                "cta.title": "एक अविस्मरणीय उमरा यात्रा के लिए तैयार हैं?",
+                "cta.desc": "अभी हमसे संपर्क करें और मनासिक विज़िटर्स के साथ अपनी अगली यात्रा बुक करें।",
+                "cta.btn1": "व्हाट्सएप पर चैट करें",
+                "cta.btn2": "हमें कॉल करें",
+                "contact.label": "हमसे संपर्क करें",
+                "contact.title": "हम आपसे सुनकर खुश होंगे",
+                "contact.desc": "किसी भी पूछताछ या अपनी अगली उमरा यात्रा बुक करने के लिए हमसे संपर्क करने में संकोच न करें।",
+                "contact.info": "संपर्क जानकारी",
+                "contact.intro": "निम्नलिखित चैनलों में से किसी के माध्यम से हम तक पहुँचें। हमारी टीम आपके सभी प्रश्नों का उत्तर देने के लिए तैयार है।",
+                "contact.phone": "फ़ोन",
+                "contact.whatsapp": "व्हाट्सएप",
+                "contact.location": "स्थान",
+                "contact.address": "अल सलवा टॉवर, 8वीं मंजिल, अल रुसैफा, मक्का 24232",
+                "contact.hours": "कार्य समय",
+                "contact.hours_value": "24 घंटे / 7 दिन",
+                "contact.our_location": "हमारा स्थान",
+                "contact.short_address": "अल सलवा टॉवर - 8वीं मंजिल - मक्का",
+                "contact.map_load": "मानचित्र लोड करने के लिए क्लिक करें",
+                "footer.brand": "मनासिक विज़िटर्स उमरा सेवाओं के लिए — सऊदी अरब में आरामदायक और विशिष्ट उमरा यात्रा के लिए आपका विश्वसनीय साथी।",
+                "footer.quicklinks": "त्वरित लिंक",
+                "footer.services_title": "हमारी सेवाएँ",
+                "footer.contact_title": "हमसे संपर्क करें",
+                "footer.s1": "उमरा यात्राएँ",
+                "footer.s2": "होटल बुकिंग",
+                "footer.s3": "परिवहन",
+                "footer.s4": "गाइड",
+                "footer.s5": "ग्राहक सहायता",
+                "footer.hours": "24/7 उपलब्ध",
+                "footer.copyright": 'सर्वाधिकार सुरक्षित &copy; 2026 <span>मनासिक विज़िटर्स उमरा सेवाओं के लिए</span>'
+            },
+            uz: {
+                "nav.home": "Bosh sahifa",
+                "nav.about": "Biz haqimizda",
+                "nav.services": "Xizmatlar",
+                "nav.why": "Nima uchun biz",
+                "nav.gallery": "Galereya",
+                "nav.licenses": "Litsenziyalar",
+                "nav.contact": "Aloqa",
+                "hero.badge": "Umra safaringiz uchun ishonchli hamkor",
+                "hero.title": '<span class="gold">Unutilmas</span> Umra<br>safari shu yerdan boshlanadi',
+                "hero.subtitle": "Biz yuksak sifat va qulaylik standartlarida to'liq Umra xizmatlarini taqdim etamiz — hashamatli mehmonxona band qilishdan tortib qulay transport va malakali yo'l-yo'riqgacha.",
+                "hero.cta1": "Hozir Umrangizni band qiling",
+                "hero.cta2": "Xizmatlarimizni ko'ring",
+                "hero.stat1": "Umra vizalari",
+                "hero.stat2": "Yillik tajriba",
+                "hero.stat3": "Doimiy qo'llab-quvvatlash",
+                "about.label": "Biz haqimizda",
+                "about.title": 'Manasik Visitors <span>Umra xizmatlari uchun</span>',
+                "about.p1": "Biz to'liq Umra xizmatlarini taqdim etishga ixtisoslashgan Saudiya kompaniyasimiz. Har bir ziyoratchi uchun Saudiya Arabistoniga kelish lahzasidan ketishigacha qulay va mazmunli ma'naviy tajribani taqdim etishga harakat qilamiz.",
+                "about.p2": "Bizningcha, Umra safari murakkabliklardan xoli bo'lishi kerak, shuning uchun biz barcha logistik tashkilotlarni o'z zimmamizga olamiz, siz esa ibodatga jamlanasiz.",
+                "about.f1": "To'liq xizmatlar",
+                "about.f2": "Mutaxassis jamoa",
+                "about.f3": "Raqobatbardosh narxlar",
+                "about.f4": "Mijozlar mamnunligi",
+                "about.tagline": "Umra • Mehmonxonalar • Transport",
+                "services.label": "Xizmatlarimiz",
+                "services.title": "To'liq Umra xizmatlari",
+                "services.desc": "Umra safaringiz davomida barcha ehtiyojlaringizni qondirish uchun mo'ljallangan turli xil xizmatlar.",
+                "services.s1.title": "Umra safarini tashkil etish",
+                "services.s1.desc": "Har qanday byudjet uchun dasturlar bilan to'liq Umra rejalashtirish, eng yaxshi ma'naviy tajriba kafolati.",
+                "services.s2.title": "Mehmonxona band qilish",
+                "services.s2.desc": "Masjid al-Haram va Masjid an-Nabaviyga yaqin eng yaxshi mehmonxonalarda raqobatbardosh narxlarda band qilish.",
+                "services.s3.title": "Transport xizmatlari",
+                "services.s3.desc": "Muqaddas shaharlar oralig'ida xavfsiz va qulay sayohat uchun zamonaviy, konditsionerli avtomobillar.",
+                "services.s4.title": "Mutaxassis yo'lboshchilar",
+                "services.s4.desc": "Sayohat davomida sizga hamroh bo'ladigan tajribali diniy va sayyoh yo'lboshchilar.",
+                "services.s5.title": "24/7 qo'llab-quvvatlash",
+                "services.s5.desc": "Bizning qo'llab-quvvatlash jamoamiz savollaringizga javob berish uchun har doim tayyor.",
+                "services.s6.title": "Ovqat va mehmondo'stlik",
+                "services.s6.desc": "Turli ta'mlarga moslashtirilgan turli xil, yuqori sifatli taomlar bilan ajoyib mehmondo'stlik xizmati.",
+                "why.label": "Nega bizni tanlang",
+                "why.title": "Nega Manasik Visitorsni tanlash kerak?",
+                "why.desc": "Biz Umrangizni unutilmas qiladigan ajoyib xizmatlarni taqdim etishda etakchimiz.",
+                "why.w1.title": "Keng tajriba",
+                "why.w1.desc": "Umra safarlarini tashkil etish va minglab ziyoratchilarga xizmat ko'rsatishda 15 yildan ortiq tajriba.",
+                "why.w2.title": "Mutaxassis jamoa",
+                "why.w2.desc": "Eng yaxshi xizmatni taqdim etish uchun malakali va o'qitilgan jamoa.",
+                "why.w3.title": "Yuqori sifat",
+                "why.w3.desc": "Biz barcha xizmatlarimizda eng yuqori sifat standartlarini saqlab turamiz.",
+                "why.w4.title": "To'liq parvarish",
+                "why.w4.desc": "Kelishdan ketishgacha integral parvarish, eng kichik tafsilotlarga e'tibor bilan.",
+                "why.w5.title": "Raqobatbardosh narxlar",
+                "why.w5.desc": "Sifatdan voz kechmasdan har qanday byudjet uchun turli paketlar.",
+                "why.w6.title": "Ishonch va xavfsizlik",
+                "why.w6.desc": "Litsenziyalangan va sertifikatlangan kompaniya xavfsiz va ishonchli safarni kafolatlaydi.",
+                "gallery.label": "Tadbirlarimiz",
+                "gallery.title": "Ko'rgazma va tadbirlardagi ishtirokimiz",
+                "gallery.desc": "Biz Haj va Umra sohasidagi yirik tadbirlar va ko'rgazmalarda ishtirok etamiz, taniqli shaxslar va hamkorlar bilan uchrashamiz.",
+                "gallery.more": "Ko'proq rasmlarni ko'rsatish",
+                "licenses.label": "Litsenziyalar va akkreditatsiyalar",
+                "licenses.title": "Litsenziyalangan va akkreditatsiyalangan kompaniya",
+                "licenses.desc": "Biz Saudiya Arabistonidagi tegishli organlar tomonidan tasdiqlangan rasmiy litsenziyalar ostida ishlaymiz.",
+                "licenses.l1.title": "Umra va Haj litsenziyasi",
+                "licenses.l1.desc": "Haj va Umra vazirligi tomonidan tasdiqlangan",
+                "licenses.l2.title": "Tijorat ro'yxati",
+                "licenses.l2.desc": "Yaroqli va rasmiy tarzda hujjatlashtirilgan tijorat ro'yxati",
+                "cta.title": "Unutilmas Umra safariga tayyormisiz?",
+                "cta.desc": "Hozir biz bilan bog'laning va Manasik Visitors bilan keyingi safaringizni band qiling.",
+                "cta.btn1": "WhatsAppda yozing",
+                "cta.btn2": "Bizga qo'ng'iroq qiling",
+                "contact.label": "Biz bilan bog'laning",
+                "contact.title": "Sizdan eshitishdan xursand bo'lamiz",
+                "contact.desc": "Har qanday savol yoki keyingi Umra safaringizni band qilish uchun biz bilan bog'lanishdan tortinmang.",
+                "contact.info": "Aloqa ma'lumotlari",
+                "contact.intro": "Quyidagi kanallarning birortasi orqali biz bilan bog'laning. Bizning jamoamiz barcha savollaringizga javob berishga tayyor.",
+                "contact.phone": "Telefon",
+                "contact.whatsapp": "WhatsApp",
+                "contact.location": "Manzil",
+                "contact.address": "Al Salwa minorasi, 8-qavat, Al Rusayfah, Makka 24232",
+                "contact.hours": "Ish vaqti",
+                "contact.hours_value": "24 soat / 7 kun",
+                "contact.our_location": "Bizning manzilimiz",
+                "contact.short_address": "Al Salwa minorasi - 8-qavat - Makka",
+                "contact.map_load": "Xaritani yuklash uchun bosing",
+                "footer.brand": "Manasik Visitors Umra xizmatlari uchun — Saudiya Arabistonida qulay va o'ziga xos Umra safari uchun ishonchli hamkoringiz.",
+                "footer.quicklinks": "Tezkor havolalar",
+                "footer.services_title": "Xizmatlarimiz",
+                "footer.contact_title": "Biz bilan bog'laning",
+                "footer.s1": "Umra safarlari",
+                "footer.s2": "Mehmonxona band qilish",
+                "footer.s3": "Transport",
+                "footer.s4": "Yo'lboshchilar",
+                "footer.s5": "Mijozlarni qo'llab-quvvatlash",
+                "footer.hours": "24/7 mavjud",
+                "footer.copyright": 'Barcha huquqlar himoyalangan &copy; 2026 <span>Manasik Visitors Umra xizmatlari uchun</span>'
+            }
+        };
+
+        const LANG_META = {
+            ar: { name: "العربية", flag: "🇸🇦", dir: "rtl" },
+            en: { name: "English", flag: "🇬🇧", dir: "ltr" },
+            tr: { name: "Türkçe", flag: "🇹🇷", dir: "ltr" },
+            id: { name: "Indonesia", flag: "🇮🇩", dir: "ltr" },
+            ms: { name: "Melayu", flag: "🇲🇾", dir: "ltr" },
+            ur: { name: "اردو", flag: "🇵🇰", dir: "rtl" },
+            fa: { name: "فارسی", flag: "🇮🇷", dir: "rtl" },
+            fr: { name: "Français", flag: "🇫🇷", dir: "ltr" },
+            hi: { name: "हिन्दी", flag: "🇮🇳", dir: "ltr" },
+            uz: { name: "Oʻzbek", flag: "🇺🇿", dir: "ltr" }
+        };
+
         // ===== WhatsApp Auto-Messages =====
         const WA_NUMBER = '966504993272';
         const WA_MESSAGES = {
@@ -2222,6 +3482,77 @@
             const message = WA_MESSAGES[type] || WA_MESSAGES.general;
             const encoded = encodeURIComponent(message);
             link.setAttribute('href', `https://wa.me/${WA_NUMBER}?text=${encoded}`);
+        });
+
+        // ===== Language System =====
+        function applyTranslations(lang) {
+            const dict = TRANSLATIONS[lang] || TRANSLATIONS.ar;
+            const meta = LANG_META[lang] || LANG_META.ar;
+
+            // Plain-text translations
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key] !== undefined) {
+                    el.textContent = dict[key];
+                }
+            });
+
+            // HTML translations (allow inline tags like <span>)
+            document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                const key = el.getAttribute('data-i18n-html');
+                if (dict[key] !== undefined) {
+                    el.innerHTML = dict[key];
+                }
+            });
+
+            // Set direction & lang attributes
+            document.documentElement.setAttribute('lang', lang);
+            document.documentElement.setAttribute('dir', meta.dir);
+
+            // Update language switcher current display
+            const langCurrentName = document.querySelector('.lang-current-name');
+            const langCurrentFlag = document.querySelector('.lang-current .flag');
+            if (langCurrentName) langCurrentName.textContent = meta.name;
+            if (langCurrentFlag) langCurrentFlag.textContent = meta.flag;
+
+            // Update active state in dropdown
+            document.querySelectorAll('.lang-option').forEach(opt => {
+                opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
+            });
+
+            // Save preference
+            try { localStorage.setItem('manasik-lang', lang); } catch(e) {}
+        }
+
+        // Init language on page load
+        let savedLang = 'ar';
+        try { savedLang = localStorage.getItem('manasik-lang') || 'ar'; } catch(e) {}
+        if (!TRANSLATIONS[savedLang]) savedLang = 'ar';
+        applyTranslations(savedLang);
+
+        // Language switcher behavior
+        const langSwitcher = document.getElementById('langSwitcher');
+        const langCurrent = document.getElementById('langCurrent');
+
+        langCurrent.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langSwitcher.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const lang = opt.getAttribute('data-lang');
+                applyTranslations(lang);
+                langSwitcher.classList.remove('open');
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!langSwitcher.contains(e.target)) {
+                langSwitcher.classList.remove('open');
+            }
         });
 
         // ===== Header Scroll Effect =====
